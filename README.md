@@ -1,4 +1,4 @@
 NashorDB
 ========
 
-Dashboard
+Database management dashboard.
