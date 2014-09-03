@@ -10,7 +10,6 @@ require_once("/var/www/html/nashor/checklogin.php");
 require_once("/var/www/html/nashor/add_entry.php");
 require_once("/var/www/html/nashor/add_roster.php");
 require_once("/var/www/html/nashor/add_teamcomp.php");
-require_once("/var/www/html/nashor/emailcalc.php");
 require_once("/var/www/html/nashor/genchecklist.php");
 require_once("/var/www/html/nashor/genlatestlogs.php");
 require_once("/var/www/html/nashor/gen_team_comp.php");

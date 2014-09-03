@@ -47,13 +47,13 @@ if (isset($_GET['warning'])) {
     <div class="container" id="cont">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-				<a href="login.php"><img style="margin-top:90px;margin-bottom:-125px;" src="http://i.imgur.com/a3pgxPM.png" /></a>
+				<a href="/var/www/html/nashor/php/login/login.php"><img style="margin-top:90px;margin-bottom:-125px;" src="http://i.imgur.com/a3pgxPM.png" /></a>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                    	<i class="fa fa-sign-in fa-fw"></i> Sign In
+                    	<i class="fa fa-sign-in fa-fw"></i> LOGIN: BOT PASS: TEST
                     </div>
                     <div class="panel-body">
-                        <form action="index.php?action=login" method="POST" role="form">
+                        <form action="/var/www/html/nashor/index.php?action=login" method="POST" role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Username" <?php if (isset($_GET['username'])) { echo "value=\"".$_GET['username']."\""; } ?>name="username" type="username" autofocus>
