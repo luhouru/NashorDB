@@ -42,18 +42,19 @@ if (isset($_GET['warning'])) {
 
 </head>
 
-<body background="http://i.imgur.com/ohf85Wj.png">
+<body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="http://i.imgur.com/oXwDxYe.jpg">
 
     <div class="container" id="cont">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-				<a href="/var/www/html/nashor/php/login/login.php"><img style="margin-top:90px;margin-bottom:-125px;" src="http://i.imgur.com/a3pgxPM.png" /></a>
-                <div class="login-panel panel panel-default">
+                <br><br><br>
+                <div style="position:relative" class="login-panel panel panel-default">
+                    <a href="login.php"><img style="position: absolute; top: -153px; height:100px; left:-135px;" src="/nashor/img/nashordb_logo.png"/></a>
                     <div class="panel-heading">
-                    	<i class="fa fa-sign-in fa-fw"></i> LOGIN: BOT PASS: TEST
+                    	<i class="fa fa-sign-in fa-fw"></i> Sign In | User: RIOT | Pass: GAMES
                     </div>
                     <div class="panel-body">
-                        <form action="/var/www/html/nashor/index.php?action=login" method="POST" role="form">
+                        <form action="index.php?action=login" method="POST" role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Username" <?php if (isset($_GET['username'])) { echo "value=\"".$_GET['username']."\""; } ?>name="username" type="username" autofocus>
@@ -61,8 +62,11 @@ if (isset($_GET['warning'])) {
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" name="sent" value="Smite" class="btn btn-lg btn-success btn-block">
+                                <!-- Change this to a button or input when using this as a form -->          
+                                <input type="submit" name="sent" value="LOGIN" class="btn btn-lg btn-info btn-block">
+                                <div align="center" style="margin-top:13px;">
+                                <a href="/nashor">Register Here</a>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
