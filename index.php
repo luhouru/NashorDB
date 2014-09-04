@@ -10,7 +10,6 @@ require_once("/var/www/html/nashor/checklogin.php");
 require_once("/var/www/html/nashor/add_entry.php");
 require_once("/var/www/html/nashor/add_roster.php");
 require_once("/var/www/html/nashor/add_teamcomp.php");
-require_once("/var/www/html/nashor/emailcalc.php");
 require_once("/var/www/html/nashor/genchecklist.php");
 require_once("/var/www/html/nashor/genlatestlogs.php");
 require_once("/var/www/html/nashor/gen_team_comp.php");
@@ -263,8 +262,8 @@ if (isset($_GET['page'])) {
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="index.php?page=admin"><i class="fa fa-gear fa-fw"></i> Admin Panel</a>
-                        </li>
+                        <!--<li><a href="index.php?page=admin"><i class="fa fa-gear fa-fw"></i> Admin Panel</a>
+                        </li>-->
                         <li><a href="index.php?action=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>

@@ -160,7 +160,35 @@
                             <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
 								<div class="form-group">
                                     <label>Division:</label>
-                                    <input class="form-control" name="division">
+                                    <select class="form-control" id="select" name="division">
+                                        <option>Master</option>
+                                        <option>Challenger</option>
+                                        <option>Diamond I</option>
+                                        <option>Diamond II</option>
+                                        <option>Diamond III</option>
+                                        <option>Diamond IV</option>
+                                        <option>Diamond V</option>
+                                        <option>Platinum I</option>
+                                        <option>Platinum II</option>
+                                        <option>Platinum III</option>
+                                        <option>Platinum IV</option>
+                                        <option>Platinum V</option>
+                                        <option>Gold I</option>
+                                        <option>Gold II</option>
+                                        <option>Gold III</option>
+                                        <option>Gold IV</option>
+                                        <option>Gold V</option>
+                                        <option>Silver I</option>
+                                        <option>Silver II</option>
+                                        <option>Silver III</option>
+                                        <option>Silver IV</option>
+                                        <option>Silver V</option>
+                                        <option>Bronze I</option>
+                                        <option>Bronze II</option>
+                                        <option>Bronze III</option>
+                                        <option>Bronze IV</option>
+                                        <option>Bronze V</option>
+                                    </select>
 								</div>
                                 <div class="form-group">
                                     <label>LP:</label>
@@ -172,7 +200,13 @@
 								</div>
                                 <div class="form-group">
                                     <label>Position:</label>
-                                    <input class="form-control" name="position">
+                                    <select class="form-control" id="select" name="position">
+                                        <option>Top</option>
+                                        <option>Jungle</option>
+                                        <option>Mid</option>
+                                        <option>Marksman</option>
+                                        <option>Support</option>
+                                    </select>
 								</div>
 								<div class="form-group">
 									<label>KDA:</label>
