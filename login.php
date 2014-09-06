@@ -1,7 +1,26 @@
 <?php
 
-//set timezone for east coast
-date_default_timezone_set('America/New_York');
+
+
+$warningtext = "";
+
+if (isset($_GET['warning'])) {
+	switch($_GET['warning']) {
+		case "badlogin":
+		$warningtext = "<div class=\"alert alert-danger\">Invalid Credentials.</div>";
+		break;
+		case "unknown":
+		$warningtext = "<div class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
+		break;
+		case "loggedout":
+		$warningtext = "<div class=\"alert alert-danger\">You are logged out.</div>";
+		break;
+		default:
+		$warningtext = "";
+		break;
+	}
+}
+
 
 //require supporting functions
 require_once("/Library/WebServer/Documents/NashorDB/tablegen.php");
@@ -14,205 +33,9 @@ require_once("/Library/WebServer/Documents/NashorDB/genchecklist.php");
 require_once("/Library/WebServer/Documents/NashorDB/gen_team_comp.php");
 require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
 
-//set login status and messages to default
-$loggedin = FALSE;
-$action = "home";
-$warning = "redirect";
-$alertset = FALSE;
-
-
-//check to see if they're logging in
-//note: load nothing until login is confirmed
-if (isset($_GET['action'])) {
-	if ($_GET['action'] == "login") {
-		if (checklogin($_POST['username'],$_POST['password'])) {
-		$loggedin = TRUE;
-		$warning = "goodlogin";
-		if (isset($_POST['remember'])) {
-		$plustime = time();
-		} else {
-		$plustime = 3600;
-		}
-		setcookie("loggedin", TRUE, time()+$plustime);
-		setcookie("username", $_POST['username'], time()+$plustime);
-		} else {
-		$warning = "badlogin&username=".$_POST['username'];
-		}
-	}
-}
-
-
-//check to see if they remain logged in
-if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
-	$loggedin = TRUE;
-	$warning = "goodlogin";
-}
-
-//if they're not logged in, send them back to the login page
-//sorry!
-if (!$loggedin) {
-header('Location: http://localhost/NashorDB/login.php?warning='.$warning);
-die();
-}
-
-
-//check to see if there are any other actions they want
-//if not, show the general dashboard
-if (isset($_GET['action'])) {
-	switch($_GET['action']) {
-	case "login":
-		if (checklogin($_POST['username'],$_POST['password'])) {
-		$loggedin = TRUE;
-		$warning = "goodlogin";
-		setcookie("loggedin", TRUE, time()+3600);
-		setcookie("username", $_POST['username'], time()+3600);
-		$_COOKIE['username'] = $_POST['username'];
-		} else {
-		$warning = "badlogin&username=".$_POST['username'];
-		}
-	break;
-
-	case "logout":
-		unset($_COOKIE['loggedin']);
-        unset($_COOKIE['username']);
-        setcookie("loggedin", null, -1);
-        setcookie("username", null, -1);
-		header('Location: http://localhost/NashorDB/login.php?warning=loggedout');
-		die();
-	break;
-    
-    
-	case "add_teamcomp":
-	if (!isset($_POST['top'])) {
-		$_POST['top'] = NULL;
-	}
-    if (!isset($_POST['mid'])) {
-		$_POST['mid'] = NULL;
-	}
-    if (!isset($_POST['jungle'])) {
-		$_POST['jungle'] = NULL;
-	}
-    if (!isset($_POST['adc'])) {
-		$_POST['adc'] = NULL;
-	}
-    if (!isset($_POST['support'])) {
-		$_POST['support'] = NULL;
-	}
-        
-    $tc = add_teamcomp($_POST['top'],$_POST['mid'],$_POST['jungle'],$_POST['adc'],$_POST['support']);
-	$tcset = TRUE;
-	break;
-        
-    case "add_roster":
-	if (!isset($_POST['top'])) {
-		$_POST['top'] = NULL;
-	}
-    if (!isset($_POST['mid'])) {
-		$_POST['mid'] = NULL;
-	}
-    if (!isset($_POST['jungle'])) {
-		$_POST['jungle'] = NULL;
-	}
-    if (!isset($_POST['adc'])) {
-		$_POST['adc'] = NULL;
-	}
-    if (!isset($_POST['support'])) {
-		$_POST['support'] = NULL;
-	}
-    
-    $roster = add_roster($_POST['top'],$_POST['mid'],$_POST['jungle'],$_POST['adc'],$_POST['support']);
-	$rosterset = TRUE;
-	break;
-
-	case "add_entry":
-	if (!isset($_POST['division'])) {
-		$_POST['division'] = NULL;
-	}
-    if (!isset($_POST['lp'])) {
-		$_POST['lp'] = NULL;
-	}
-    if (!isset($_POST['champion'])) {
-		$_POST['champion'] = NULL;
-	}
-    if (!isset($_POST['position'])) {
-		$_POST['position'] = NULL;
-	}
-    if (!isset($_POST['kda'])) {
-		$_POST['kda'] = NULL;
-	}
-	if (!isset($_POST['cs'])) {
-		$_POST['cs'] = NULL;
-	}
-	if (!isset($_POST['mistakes'])) {
-		$_POST['mistakes'] = NULL;
-	}
-    if (!isset($_POST['improvements'])) {
-		$_POST['improvements'] = NULL;
-	}
-
-	$alert = add_entry($_POST['division'],$_POST['lp'],$_POST['champion'],$_POST['position'],$_POST['kda'],$_POST['cs'],$_POST['mistakes'],$_POST['improvements']);
-	$alertset = TRUE;
-	break;
-
-	default:
-	$action = "home";
-	break;
-	}
-} else {
-
-}
-
-
-//grab the user details
-$db = mysqli_connect("localhost", "root", null, "users");
-$query = "SELECT * FROM users where username='".$_COOKIE['username']."'";
-$result = mysqli_query($db, $query);
-$userdetails = mysqli_fetch_assoc($result);
-mysqli_close($db);
-
-$subtitle = "";
-if (isset($_GET['page'])) {
-	switch($_GET['page']) {
-        
-        case "roster":
-		$subtitle = "Add New Roster";
-		break;
-        
-        case "comp":
-		$subtitle = "Team Comps";
-		break;
-
-		case "about":
-		$subtitle = "About NashorDB";
-		break;
-        
-        case "soundcloud":
-		$subtitle = "Soundcloud";
-		break;
-        
-        case "reddit":
-		$subtitle = "Reddit";
-		break;
-        
-        case "bulletin":
-		$subtitle = "Mandate of Heaven Bulletin";
-		break;
-        
-        case "stats":
-		$subtitle = "Performance Chart";
-		break;
-
-		default:
-		$subtitle = "Dashboard";
-		break;
-		}
-} else {
-	//default page
-	$subtitle = "Dashboard";
-}
-
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -261,10 +84,10 @@ if (isset($_GET['page'])) {
     
         
         
-    <div class="navbar navbar-default navbar-fixed-top" style="position:fixed; background:transparent; background-color:transparent;">
-      <div class="container" >
+    <div class="navbar navbar-default" style="margin-top:-30px;background-color: transparent">
+      <div class="container">
         <div class="navbar-header" style="background:transparent; background-color:transparent;">
-          <a style="color: #4582ec" class="navbar-brand" href="http://chrisluk.im">CHRISLUK<img src="img/logo.PNG"  height="23" width="23"/></a>
+          <a style="color: #4582ec" class="navbar-brand" href="http://chrisluk.im">CHRISLUK<img src="img/logo.PNG" style="margin-top:-4px;margin-left:13px;" height="25" width="25"/></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -272,30 +95,35 @@ if (isset($_GET['page'])) {
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav" >
             <li>
               <a data-toggle="modal" href="#about-modal">ABOUT</a>
               <!-- Modal -->
             </li>
             <li class="dropdown">
-              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
+              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
-                <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                <li><a href="http://lolking.net">LOLKING</a></li>
+                <li><a href="http://op.gg">OP.GG</a></li>
                 <li class="divider"></li>
-                <li><a href="./variables.less">variables.less</a></li>
-                <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                <li><a href="http://twitter.com/emperorsyno">Twitter</a></li>
+                <li><a href="http://github.com/cluk2971">GitHub</a></li>
               </ul>
             </li>
           </ul>
+        <?php echo $warningtext; ?>
         <div align="right">
-            <ul style="position:abolute;">
-                <div align="right">
-                <input placeholder="Username" style="width:150px; margin-left:300px; margin-top:15px; margin-right: 12px;" type="text" class="input-sm form-control col-lg-8" name="username" value=""> 
-                    <input placeholder="Password" style="width:150px; margin-top:15px; margin-bottom:10px;" type="password" class="input-sm form-control col-lg-8" name="password" value="">
-                 </div>
-                    <button class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:15px;">Login</button><button style="margin-top:15px;margin-left:12px;" class="btn btn-sm btn-danger" style="color: #000000" href="#">Register</button>
-                
+            <ul>
+                <form action="index.php?action=login" method="POST" role="form">
+                <fieldset>
+                    <div class="form-group">
+                <input placeholder="Username" style="width:150px; margin-left:229px; margin-top:16px;" type="text" class="input-md form-control col-lg-8" name="email" value=""> 
+                    </div>
+                    <div class="form-group">
+                    <input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-8" name="password" value="">
+                    </div>
+                </fieldset>
+                    <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px; margin-left:-12px;margin-top:-66px;" value="Login"><button style="width:100px;margin-top:-66px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#">Register</button>
              </ul>
         </div>
 
@@ -311,26 +139,27 @@ if (isset($_GET['page'])) {
                       <h4 class="modal-title">About NashorDB</h4>
                     </div>
                     <div class="modal-body">
-                      ...
+                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.
                     </div>
                     <div class="modal-footer">
+                      &copy; CHRISLUK &nbsp;&nbsp;
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->    
         
-    <div class="container">
+    <div class="container" style="margin-top:-70px;">
       <div class="page-header" id="banner">
         <div class="row">
-            <br><br>
+            <br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-137px; height:100px; weight:100px;" src="/NashorDB/img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-160px; right:40px;height:300px; weight:300px;" src="/NashorDB/img/real_baron.png"/> 
+            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="/NashorDB/img/nashordb_logo.png"/>
+             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="/NashorDB/img/real_baron.png"/> 
               <br>
-            <h2 align="left" style="margin-bottom:7px; margin-top: -5px; color:white;">LOG YOUR SOLO Q STATS</h2>
-            <h2 align="left" class="bs-component" style="color:white; margin-top: px; margin-bottom:7px;">ENTER POST GAME DETAILS, IMPROVE YOUR PLAY!</h2>
+            <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
+            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
+            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; Add reasons to improve and justify mistakes</h3><br>
           </div>
         
           <div class="col-lg-4 col-md-5 col-sm-6">
@@ -345,162 +174,23 @@ if (isset($_GET['page'])) {
         
         
         
-                    <p style="color:white">
-                    <?php
-                    	$connection = mysqli_connect("localhost", "root", null, "stats");
-                        // find the last entries LP
-			switch ($_COOKIE['username']) {
-    		   	    case "chris.luk":
-        			$lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-        			break;
-    			    case "googz":
-        			$lp_query = "SELECT `lp` FROM stats_googz ORDER BY entry_id DESC limit 1";
-        			break;
-    		    	    case "chombol":
-        			$lp_query = "SELECT `lp` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-        			break;
-    		 	    default:
-        			$lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-        			break;
-			}
-
-			$lp_result = mysqli_query($connection, $lp_query);
-    
-                        // fetch query results
-	                $lp_row = mysqli_fetch_assoc($lp_result);
-                        $lp_old = $lp_row['lp'];
-			
-			switch ($_COOKIE['username']) {
-                            case "chris.luk":
-                                $div_query = "SELECT `division` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "googz":
-                                $div_query = "SELECT `division` FROM stats_googz ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "chombol":
-                                $div_query = "SELECT `division` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-                                break;
-                            default:
-                                $div_query = "SELECT `division` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                        }	
-
-			// fetch division query results
-			$div_result = mysqli_query($connection, $div_query);
-			$div_row = mysqli_fetch_assoc($div_result);
-			$current_div = $div_row['division'];
-			$next_div = "";
-			switch ($current_div) {
-			    case "Bronze V":
-			        $next_div = "Bronze IV";
-			        break;
-			    case "Bronze IV":
-				$next_div = "Bronze III";
-				break;
-			    case "Bronze III":
-				$next_div = "Bronze II";
-				break;
-			    case "Bronze II":
-				$next_div = "Bronze I";
-				break;
-			    case "Bronze I":
-				$next_div = "Silver V";
-				break;
-			    case "Silver V":
-                                $next_div = "Silver IV";
-                                break;
-                            case "Silver IV":
-                                $next_div = "Silver III";
-                                break;
-                            case "Silver III":
-                                $next_div = "Silver II";
-                                break;
-                            case "Silver II":
-                                $next_div = "Silver I";
-                                break;
-                            case "Silver I":
-                                $next_div = "Gold V";
- 			    case "Gold V":
-                                $next_div = "Gold IV";
-                                break;
-                            case "Gold IV":
-                                $next_div = "Gold III";
-                                break;
-                            case "Gold III":
-                                $next_div = "Gold II";
-                                break;
-                            case "Gold II":
-                                $next_div = "Gold I";
-                                break;
-                            case "Gold I":
-                                $next_div = "Platinum V";
- 			    case "Platinum V":
-                                $next_div = "Platinum IV";
-                                break;
-                            case "Platinum IV":
-                                $next_div = "Platinum III";
-                                break;
-                            case "Platinum III":
-                                $next_div = "Platinum II";
-                                break;
-                            case "Platinum II":
-                                $next_div = "Platinum I";
-                                break;
-                            case "Platinum I":
-                                $next_div = "Diamond V";
-	                        break;
-			}
-
-                        if ($lp_old == 100) {
-                            echo "In Series! Next Division: ".$next_div;
-                        } else {
-			    echo "Next Division: ".$next_div;
-			}
-                    ?></p>
+                    <p style="color:white">Watch your progress bar as you approach 100 LP!</p>
             <div class="progress progress-striped active">
-                <div class="progress-bar"
-                     <?php
-                    	$connection = mysqli_connect("localhost", "root", null, "stats");
-                        /*$db_name = 'stats';
-                        mysql_select_db($db_name, $connection);*/
- 	
-                        // find the last entries LP
-                        switch ($_COOKIE['username']) {
-                            case "chris.luk":
-                                $lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "googz":
-                                $lp_query = "SELECT `lp` FROM stats_googz ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "chombol":
-                                $lp_query = "SELECT `lp` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-                                break;
-                            default:
-                                $lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                        }
-                        $lp_result = mysqli_query($connection, $lp_query);
-                        // fetch query results
-	                $lp_row = mysqli_fetch_assoc($lp_result);
-                        $lp_old = $lp_row['lp'];
-                        echo "style='width: ".$lp_old."%'";
-                    ?>>
-                </div>
+                <div class="progress-bar" style="width: 90%";></div>
             </div>    
             <div class="row">
-                <div class="col-lg-12">
-                    <!-- /.panel -->
-                    <?php 
-					   echo tablegen(0,0); 
-					?>
+                <div class="page-header">
+                    <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
+                    <p style="color:white;margin-left:3em;">Use this form to log your post-game data.</p>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-primary">
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            <i class="fa fa-upload fa-fw"></i> Add New Entry
+                            <i class="fa fa-upload fa-fw"></i> LOG NEW ENTRY
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <div class="col-lg-4">
                             <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
 								<div class="form-group">
                                     <label>Division:</label>
@@ -535,13 +225,15 @@ if (isset($_GET['page'])) {
                                     </select>
 								</div>
                                 <div class="form-group">
-                                    <label>LP:</label>
+                                    <label>Current LP:</label>
                                     <input class="form-control" name="lp">
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
                                     <input class="form-control" name="champion">
 								</div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>Position:</label>
                                     <select class="form-control" id="select" name="position">
@@ -552,6 +244,7 @@ if (isset($_GET['page'])) {
                                         <option>Support</option>
                                     </select>
 								</div>
+                            
 								<div class="form-group">
 									<label>KDA:</label>
                                     <input class="form-control" name="kda">
@@ -560,6 +253,8 @@ if (isset($_GET['page'])) {
 									<label>CS:</label>
                                     <input class="form-control" name="cs">
 								</div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
 									<label>Mistakes:</label>
                                     <input class="form-control" name="mistakes">
@@ -568,9 +263,11 @@ if (isset($_GET['page'])) {
 									<label>Improve By:</label>
                                     <input class="form-control" name="improvements">
                                 </div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Add Entry</button>
+                            <div class="form-group">
+							<button type="submit" align="center" style="margin-top:35px;" class="disabled btn btn-info btn-lg btn-block">Add Entry</button></div>
+                            </div>
 							</form>
-						</div>
+
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
@@ -587,7 +284,7 @@ if (isset($_GET['page'])) {
 
         <div class="row">
           <div class="col-lg-12">
-            <h2 style="color:#FFF87C;" id="type-blockquotes">What People Are Saying</h2>
+            <h2 style="color:#c7e274;" id="type-blockquotes">What People Are Saying</h2>
           </div>
         </div>
         <div class="row">
@@ -595,7 +292,7 @@ if (isset($_GET['page'])) {
             <div class="bs-component">
               <blockquote>
                 <p style="color:white;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
-                <small style="color:#FFF87C;"><cite title="Source Title">Emperor Googz</cite></small>
+                <small style="color:#c7e274;"><cite title="Source Title">Emperor Googz</cite></small>
               </blockquote>
             </div>
           </div>
@@ -603,7 +300,7 @@ if (isset($_GET['page'])) {
             <div class="bs-component">
               <blockquote class="pull-right">
                 <p style="color:white;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
-                <small style="color:#FFF87C;"> <cite title="Source Title">Chombol</cite></small>
+                <small style="color:#c7e274;"> <cite title="Source Title">Chombol</cite></small>
               </blockquote>
             </div>
           </div>
@@ -621,7 +318,7 @@ if (isset($_GET['page'])) {
         
         
         <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         
         
         

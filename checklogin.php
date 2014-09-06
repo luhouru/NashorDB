@@ -2,7 +2,7 @@
 
 function checklogin($username, $password) {
 
-$db = mysqli_connect("localhost", "syno", "fiend", "users");
+$db = mysqli_connect("localhost", "root", null, "users");
 		
 	if (!$db) {
 		return 2;

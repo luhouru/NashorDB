@@ -1,5 +1,5 @@
-    NashorDB
+NashorDB
 ========
 
 Database management dashboard.<br>
-Accessible via http://www.nashordb.net
+Accessible via http://chrisluk.im/nashor

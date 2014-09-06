@@ -18,9 +18,9 @@ $backstyle = "btn-primary";
 }
 
 $tbody = '';
-$connection = mysql_connect("localhost", "syno", "fiend");
-$db_name = 'stats';
-mysql_select_db($db_name, $connection);
+$connection = mysqli_connect("localhost", "root", null, "stats");
+/*$db_name = 'stats';
+mysql_select_db($db_name, $connection);*/
 $query = "";
 switch ($_COOKIE['username']) {
     case "chris.luk":
@@ -36,7 +36,7 @@ switch ($_COOKIE['username']) {
 	$query = "SELECT * FROM stats_luk ORDER BY entry_id desc;";
 	break;
 }
-$result = mysql_query($query);
+$result = mysqli_query($connection, $query);
     
 $count = 0;
 $startpt = $pagenum * 15;
@@ -47,12 +47,12 @@ if ($result === false) {
 }
 
 // Display table
-while ($table = mysql_fetch_row($result)) {
-	mysql_data_seek($result, 0);
-	if (mysql_num_rows($result)) {
+while ($table = mysqli_fetch_row($result)) {
+	mysqli_data_seek($result, 0);
+	if (mysqli_num_rows($result)) {
 		$inc = 0;
-		mysql_data_seek($result, 0);
-		while($row = mysql_fetch_assoc($result)) {
+		mysqli_data_seek($result, 0);
+		while($row = mysqli_fetch_assoc($result)) {
 			//if ($inc >= $startpt && $inc <= $endpt) {
                 $sign = $row['gain'];
 	            if ($sign < 0) {
@@ -91,7 +91,7 @@ $result = '<div style="padding-bottom:3px;" class="panel panel-primary">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
-                                        <table class="table table-hover">
+                                        <table data-pagination="true" class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 60px;">Division</th>

@@ -3,15 +3,15 @@
 date_default_timezone_set('America/New_York');
 
 //require supporting functions
-require_once("/var/www/html/tablegen.php");
-require_once("/var/www/html/gen_roster.php");
-require_once("/var/www/html/checklogin.php");
-require_once("/var/www/html/add_entry.php");
-require_once("/var/www/html/add_roster.php");
-require_once("/var/www/html/add_teamcomp.php");
-require_once("/var/www/html/genchecklist.php");
-require_once("/var/www/html/gen_team_comp.php");
-require_once("/var/www/html/genlatestmsg.php");
+require_once("/Library/WebServer/Documents/NashorDB/tablegen.php");
+require_once("/Library/WebServer/Documents/NashorDB/gen_roster.php");
+require_once("/Library/WebServer/Documents/NashorDB/checklogin.php");
+require_once("/Library/WebServer/Documents/NashorDB/add_entry.php");
+require_once("/Library/WebServer/Documents/NashorDB/add_roster.php");
+require_once("/Library/WebServer/Documents/NashorDB/add_teamcomp.php");
+require_once("/Library/WebServer/Documents/NashorDB/genchecklist.php");
+require_once("/Library/WebServer/Documents/NashorDB/gen_team_comp.php");
+require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
 
 //set login status and messages to default
 $loggedin = FALSE;
@@ -48,7 +48,7 @@ if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
 //if they're not logged in, send them back to the login page
 //sorry!
 if (!$loggedin) {
-header('Location: http://www.nashordb.net/login.php?warning='.$warning);
+header('Location: http://localhost/NashorDB/login.php?warning='.$warning);
 die();
 }
 
@@ -74,7 +74,7 @@ if (isset($_GET['action'])) {
         unset($_COOKIE['username']);
         setcookie("loggedin", null, -1);
         setcookie("username", null, -1);
-		header('Location: http://www.nashordb.net/login.php?warning=loggedout');
+		header('Location: http://localhost/NashorDB/login.php?warning=loggedout');
 		die();
 	break;
     
