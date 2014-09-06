@@ -3,17 +3,15 @@
 date_default_timezone_set('America/New_York');
 
 //require supporting functions
-require_once("/var/www/html/nashor/tablegen.php");
-require_once("/var/www/html/nashor/genlogs.php");
-require_once("/var/www/html/nashor/gen_roster.php");
-require_once("/var/www/html/nashor/checklogin.php");
-require_once("/var/www/html/nashor/add_entry.php");
-require_once("/var/www/html/nashor/add_roster.php");
-require_once("/var/www/html/nashor/add_teamcomp.php");
-require_once("/var/www/html/nashor/genchecklist.php");
-require_once("/var/www/html/nashor/genlatestlogs.php");
-require_once("/var/www/html/nashor/gen_team_comp.php");
-require_once("/var/www/html/nashor/genlatestmsg.php");
+require_once("/Library/WebServer/Documents/NashorDB/tablegen.php");
+require_once("/Library/WebServer/Documents/NashorDB/gen_roster.php");
+require_once("/Library/WebServer/Documents/NashorDB/checklogin.php");
+require_once("/Library/WebServer/Documents/NashorDB/add_entry.php");
+require_once("/Library/WebServer/Documents/NashorDB/add_roster.php");
+require_once("/Library/WebServer/Documents/NashorDB/add_teamcomp.php");
+require_once("/Library/WebServer/Documents/NashorDB/genchecklist.php");
+require_once("/Library/WebServer/Documents/NashorDB/gen_team_comp.php");
+require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
 
 //set login status and messages to default
 $loggedin = FALSE;
@@ -50,7 +48,7 @@ if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
 //if they're not logged in, send them back to the login page
 //sorry!
 if (!$loggedin) {
-header('Location: http://chrisluk.im/nashor/login.php?warning='.$warning);
+header('Location: http://localhost/NashorDB/login.php?warning='.$warning);
 die();
 }
 
@@ -76,7 +74,7 @@ if (isset($_GET['action'])) {
         unset($_COOKIE['username']);
         setcookie("loggedin", null, -1);
         setcookie("username", null, -1);
-		header('Location: http://chrisluk.im/nashor/login.php?warning=loggedout');
+		header('Location: http://localhost/NashorDB/login.php?warning=loggedout');
 		die();
 	break;
     
@@ -361,36 +359,36 @@ if (isset($_GET['page'])) {
 				switch($_GET['page']) {
 
 				case "stats":
-				require_once("/var/www/html/nashor/stats.php");
+				require_once("/Library/WebServer/Documents/NashorDB/stats.php");
 				break;
                     
                 case "comp":
-                require_once("/var/www/html/nashor/team_comp.php");
+                require_once("/Library/WebServer/Documents/NashorDB/team_comp.php");
                 break;
                     
                 case "roster":
-				require_once("/var/www/html/nashor/roster.php");
+				require_once("/Library/WebServer/Documents/NashorDB/roster.php");
 				break;
 
 				case "about":
-				require_once("/var/www/html/nashor/about.php");
+				require_once("/Library/WebServer/Documents/NashorDB/about.php");
 				break;
 
 				case "soundcloud":
-				require_once("/var/www/html/nashor/soundcloud.php");
+				require_once("/Library/WebServer/Documents/NashorDB/soundcloud.php");
 				break;
                     
                 case "bulletin":
-				require_once("/var/www/html/nashor/bulletin.php");
+				require_once("/Library/WebServer/Documents/NashorDB/bulletin.php");
 				break;
 
 				default:
-				require_once("/var/www/html/nashor/dash.php");
+				require_once("/Library/WebServer/Documents/NashorDB/dash.php");
 				break;
 				}
 				} else {
 				//default page
-				require_once("/var/www/html/nashor/dash.php");
+				require_once("/Library/WebServer/Documents/NashorDB/dash.php");
 				}
 
 			?>
