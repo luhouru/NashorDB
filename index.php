@@ -225,6 +225,9 @@ if (isset($_GET['page'])) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <!-- Page-Level Plugin CSS - Dashboard -->
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+      
     <!-- SB Admin CSS - Include with every page -->
     <link href="css/sb-admin.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -583,7 +586,17 @@ if (isset($_GET['page'])) {
         
         
         
-        
+        <div align="center" class="col-lg-6">  
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Most Played Champions
+                </div>
+            <div class="panel-body">
+               <div style="height:450px;" id="morris-file-bar">
+               </div>
+            </div>
+            </div>
+        </div>
         
         
         
@@ -1750,8 +1763,33 @@ if (isset($_GET['page'])) {
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"/>
+    <script src="js/plugins/morris/morris.js"/>
     <script src="js/bootstrap.js"/>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/bootswatch.js"></script>
+        
+    <?php
+	$db = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+	$result = mysqli_query($db,"SELECT champion, count(*) FROM stats_luk GROUP BY champion ORDER BY count(*) DESC LIMIT 5;");
+	$errors = mysqli_fetch_all($result);
+	$datas = "";
+	foreach ($errors as &$val) {
+		$val[0] = basename($val[0]);
+		$datas .= "{ y: '$val[0]', a: $val[1]},";
+	}
+	?>
+	
+	<script>
+	Morris.Bar({
+		element: 'morris-file-bar',
+		data: [
+		<?php echo $datas; ?>
+			],
+		xkey: 'y',
+		ykeys: ['a'],
+		labels: ['Count']
+	});
+	</script>
+        
   </body>
 </html>
