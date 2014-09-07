@@ -276,7 +276,7 @@ if (isset($_GET['page'])) {
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a class="btn btn-success" data-toggle="modal" href="#about-modal">ABOUT</a>
+              <a class="btn btn-default" data-toggle="modal" href="#about-modal">ABOUT</a>
               <!-- Modal -->
             </li>
            <li class="dropdown">
