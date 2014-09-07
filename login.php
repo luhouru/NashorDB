@@ -153,7 +153,7 @@ require_once("genlatestmsg.php");
         <div class="row">
             <br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
+            <img href='#' onclick="location.reload(true);" align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
              <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="img/real_baron.png"/> 
               <br>
             <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
