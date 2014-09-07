@@ -164,7 +164,7 @@ if (isset($_GET['action'])) {
 
 
 //grab the user details
-$db = mysqli_connect("localhost", "root", null, "users");
+$db = mysqli_connect("localhost", "root", "supfoo2971", "users");
 $query = "SELECT * FROM users where username='".$_COOKIE['username']."'";
 $result = mysqli_query($db, $query);
 $userdetails = mysqli_fetch_assoc($result);
@@ -219,8 +219,8 @@ if (isset($_GET['page'])) {
     <meta charset="utf-8">
     <title>NashorDB: A Database Management Dashboard - Chris Luk Dot Im</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap.css" media="screen">
-    <link rel="stylesheet" href="../assets/css/bootswatch.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch.min.css">
       <!-- Core CSS - Include with every page -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -261,10 +261,9 @@ if (isset($_GET['page'])) {
     
         
         
-    <div class="navbar navbar-default navbar-fixed-top" style="position:fixed; background:transparent; background-color:transparent;">
+    <div class="navbar navbar-default" style="background-color: transparent">
       <div class="container" >
         <div class="navbar-header" style="background:transparent; background-color:transparent;">
-          <a style="color: #4582ec" class="navbar-brand" href="http://chrisluk.im">CHRISLUK<img src="img/logo.PNG"  height="23" width="23"/></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -277,32 +276,36 @@ if (isset($_GET['page'])) {
               <a class="btn btn-success" data-toggle="modal" href="#about-modal">ABOUT</a>
               <!-- Modal -->
             </li>
-            <li class="dropdown">
-              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
+           <li class="dropdown">
+              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
-                <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                <li><a href="http://lolking.net">LOLKING</a></li>
+                <li><a href="http://op.gg">OP.GG</a></li>
                 <li class="divider"></li>
-                <li><a href="./variables.less">variables.less</a></li>
-                <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                <li><a href="http://twitter.com/emperorsyno">Twitter</a></li>
+                <li><a href="http://github.com/cluk2971">GitHub</a></li>
               </ul>
             </li>
+            <li>
+              <p style="color:white;"><b>Welcome, 
+                    <?php
+                        echo $_COOKIE['username'];
+                    ?>
+                    </b></p>
+              </li>
+            <li style="a:right;">
+              <form action="index.php?action=logout" method="POST" role="form">
+                        <button type="submit" class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:15px;">Logout</button>
+                    </form>
+              </li>
           </ul>
-        <div align="right">
-            <ul style="position:abolute;">
-                <div align="right">
-                <input placeholder="Username" style="width:150px; margin-left:383px; margin-top:15px; margin-right: 12px;" type="text" class="input-sm form-control col-lg-8" name="username" value=""> 
-                    <input placeholder="Password" style="width:150px; margin-top:15px; margin-bottom:10px;" type="password" class="input-sm form-control col-lg-8" name="password" value="">
-                 </div>
-                    <button class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:15px;">Login</button><button style="margin-top:15px;margin-left:12px;" class="btn btn-sm btn-danger" style="color: #000000" href="#">Register</button>
-                
-             </ul>
-        </div>
 
         </div>
       </div>
     </div>
-
+        
+        
+        
     <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -311,26 +314,27 @@ if (isset($_GET['page'])) {
                       <h4 class="modal-title">About NashorDB</h4>
                     </div>
                     <div class="modal-body">
-                      ...
+                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.
                     </div>
                     <div class="modal-footer">
+                      &copy; CHRISLUK &nbsp;&nbsp;
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->    
         
-    <div class="container">
+    <div class="container" style="margin-top:-70px;">
       <div class="page-header" id="banner">
         <div class="row">
-            <br><br>
+            <br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-137px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-160px; right:40px;height:300px; weight:300px;" src="img/real_baron.png"/> 
+            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
+             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="img/real_baron.png"/> 
               <br>
-            <h2 align="left" style="margin-bottom:7px; margin-top: -5px; color:white;">LOG YOUR SOLO Q STATS</h2>
-            <h2 align="left" class="bs-component" style="color:white; margin-top: px; margin-bottom:7px;">ENTER POST GAME DETAILS, IMPROVE YOUR PLAY!</h2>
+            <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
+            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
+            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; Add reasons to improve and justify mistakes</h3><br>
           </div>
         
           <div class="col-lg-4 col-md-5 col-sm-6">
@@ -347,47 +351,25 @@ if (isset($_GET['page'])) {
         
                     <p style="color:white">
                     <?php
-                    	$connection = mysqli_connect("localhost", "root", null, "stats");
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
                         // find the last entries LP
-			switch ($_COOKIE['username']) {
-    		   	    case "chris.luk":
-        			$lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-        			break;
-    			    case "googz":
-        			$lp_query = "SELECT `lp` FROM stats_googz ORDER BY entry_id DESC limit 1";
-        			break;
-    		    	    case "chombol":
-        			$lp_query = "SELECT `lp` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-        			break;
-    		 	    default:
-        			$lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-        			break;
-			}
+                        $username = $_COOKIE['username'];
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
 
-			$lp_result = mysqli_query($connection, $lp_query);
-    
+                        $lp_result = mysqli_query($connection, $lp_query);
+
                         // fetch query results
-	                $lp_row = mysqli_fetch_assoc($lp_result);
+                        $lp_row = mysqli_fetch_assoc($lp_result);
                         $lp_old = $lp_row['lp'];
-			
-			switch ($_COOKIE['username']) {
-                            case "chris.luk":
-                                $div_query = "SELECT `division` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "googz":
-                                $div_query = "SELECT `division` FROM stats_googz ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "chombol":
-                                $div_query = "SELECT `division` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-                                break;
-                            default:
-                                $div_query = "SELECT `division` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                        }	
+                        $div_query = "SELECT `division` FROM `".$username."` ORDER BY entry_id DESC limit 1";
 
 			// fetch division query results
 			$div_result = mysqli_query($connection, $div_query);
 			$div_row = mysqli_fetch_assoc($div_result);
+            if($div_row == false) {
+                echo "failed to retrieve division";
+                die();
+            }
 			$current_div = $div_row['division'];
 			$next_div = "";
 			switch ($current_div) {
@@ -460,25 +442,12 @@ if (isset($_GET['page'])) {
             <div class="progress progress-striped active">
                 <div class="progress-bar"
                      <?php
-                    	$connection = mysqli_connect("localhost", "root", null, "stats");
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
                         /*$db_name = 'stats';
                         mysql_select_db($db_name, $connection);*/
  	
                         // find the last entries LP
-                        switch ($_COOKIE['username']) {
-                            case "chris.luk":
-                                $lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "googz":
-                                $lp_query = "SELECT `lp` FROM stats_googz ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "chombol":
-                                $lp_query = "SELECT `lp` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-                                break;
-                            default:
-                                $lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                        }
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
                         $lp_result = mysqli_query($connection, $lp_query);
                         // fetch query results
 	                $lp_row = mysqli_fetch_assoc($lp_result);

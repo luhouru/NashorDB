@@ -42,8 +42,8 @@ require_once("genlatestmsg.php");
     <meta charset="utf-8">
     <title>NashorDB: A Database Management Dashboard - Chris Luk Dot Im</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap.css" media="screen">
-    <link rel="stylesheet" href="../assets/css/bootswatch.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch.min.css">
       <!-- Core CSS - Include with every page -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -111,11 +111,11 @@ require_once("genlatestmsg.php");
             </li>
           </ul>
         <div align="right">
+            <form action="index.php?action=login" method="POST" role="form">
             <ul>
-                <form action="index.php?action=login" method="POST" role="form">
                 <fieldset>
                     <div class="form-group">
-                <input placeholder="Username" style="width:150px; margin-left:383px; margin-top:16px;" type="text" class="input-md form-control col-lg-8" name="email" value=""> 
+                <input placeholder="Username" style="width:150px; margin-left:383px; margin-top:16px;" type="text" class="input-md form-control col-lg-8" name="username" value=""> 
                     </div>
                     <div class="form-group">
                     <input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-8" name="password" value="">
@@ -123,6 +123,7 @@ require_once("genlatestmsg.php");
                 </fieldset>
                     <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px; margin-left:-12px;margin-top:-66px;" value="Login"><button style="width:100px;margin-top:-66px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#">Register</button>
              </ul>
+             </form>
         </div>
 
         </div>
@@ -1530,7 +1531,7 @@ require_once("genlatestmsg.php");
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"/>
     <script src="js/bootstrap.js"/>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
     <script src="assets/js/bootswatch.js"></script>
   </body>
 </html>

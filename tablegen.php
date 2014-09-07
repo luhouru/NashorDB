@@ -18,24 +18,12 @@ $backstyle = "btn-primary";
 }
 
 $tbody = '';
-$connection = mysqli_connect("localhost", "root", null, "stats");
+$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
 /*$db_name = 'stats';
 mysql_select_db($db_name, $connection);*/
 $query = "";
-switch ($_COOKIE['username']) {
-    case "chris.luk":
-        $query = "SELECT * FROM stats_luk ORDER BY entry_id desc;";
-	break;
-    case "googz":
-	$query = "SELECT * FROM stats_googz ORDER BY entry_id desc;";
-	break;
-    case "chombol":
-	$query = "SELECT * FROM stats_chombol ORDER BY entry_id desc;";
-	break;
-    default:
-	$query = "SELECT * FROM stats_luk ORDER BY entry_id desc;";
-	break;
-}
+$username = $_COOKIE['username'];
+$query = "SELECT * FROM ".$username." ORDER BY entry_id desc;";
 $result = mysqli_query($connection, $query);
     
 $count = 0;
