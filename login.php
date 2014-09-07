@@ -168,68 +168,16 @@ require_once("genlatestmsg.php");
                 </div>-->
             </div>
           </div>
+        
         </div>
       </div>
+
         
-        
-        
-                    <p style="color:white">Watch your progress bar as you approach 100 LP!</p>
-            <div class="progress progress-striped active">
-                <div class="progress-bar" style="width: 90%";></div>
-            </div>   
-        
-        
-        
-    <div style="padding-bottom:3px;" class="panel panel-primary">
-        <div class="panel-heading">
-            <i class="fa fa-table fa-fw"></i> Post-Game Statistics
-        </div>
-                <!-- /.panel-heading -->
-        <div class="panel-body">
-           <div class="row">
-              <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table data-pagination="true" class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 60px;">Division</th>
-                                                    <th style="width: 25px;">LP</th>
-                                                    <th style="width: 25px;">Gain</th>
-                                                    <th style="width: 60px;">Champion</th>
-                                                    <th style="width: 60px;">Position</th>
-                                                    <th style="width: 40px;">KDA</th>
-                                                    <th style="width: 20px;">CS</th>
-                                                    <th style="width: 75px;">Mistakes</th>
-                                                    <th style="width: 75px;">Improvements</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            '.$tbody.'
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.col-lg-12 (nested) -->
-                                <div class="col-lg-12">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-12 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-        
-        
-        
-        
-        
-        
+                <img align="left" style="position: relative;" src="img/sample_table.png"/>
         
         <!--FORM TO ADD ENTRY-->
-        <br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
             <div class="row">
                 <div class="page-header">
                     <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
