@@ -213,29 +213,20 @@ if (isset($_GET['page'])) {
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>NashorDB: A Database Management Dashboard - Chris Luk Dot Im</title>
+    <title>Bootswatch: Readable</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/bootswatch.min.css">
-      <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-      
-    <!-- SB Admin CSS - Include with every page -->
-    <link href="css/sb-admin.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="../bower_components/respond/dest/respond.min.js"></script>
     <![endif]-->
-    <script src="bootstrap.min.js"/>
     <script>
 
      var _gaq = _gaq || [];
@@ -252,21 +243,11 @@ if (isset($_GET['page'])) {
 
     </script>
   </head>
-    
-    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
-    
-        
-        
-        
-        
-        
-        
-    
-        
-        
-    <div class="navbar navbar-default" style="background-color: transparent">
-      <div class="container" >
-        <div class="navbar-header" style="background:transparent; background-color:transparent;">
+  <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Bootswatch</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -275,356 +256,82 @@ if (isset($_GET['page'])) {
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li>
-              <a class="btn btn-default" data-toggle="modal" href="#about-modal">ABOUT</a>
-              <!-- Modal -->
-            </li>
-           <li class="dropdown">
-              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="http://lolking.net">LOLKING</a></li>
-                <li><a href="http://op.gg">OP.GG</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="../default/">Default</a></li>
                 <li class="divider"></li>
-                <li><a href="http://twitter.com/emperorsyno">Twitter</a></li>
-                <li><a href="http://github.com/cluk2971">GitHub</a></li>
+                <li><a href="../cerulean/">Cerulean</a></li>
+                <li><a href="../cosmo/">Cosmo</a></li>
+                <li><a href="../cyborg/">Cyborg</a></li>
+                <li><a href="../darkly/">Darkly</a></li>
+                <li><a href="../flatly/">Flatly</a></li>
+                <li><a href="../journal/">Journal</a></li>
+                <li><a href="../lumen/">Lumen</a></li>
+                <li><a href="../paper/">Paper</a></li>
+                <li><a href="../readable/">Readable</a></li>
+                <li><a href="../sandstone/">Sandstone</a></li>
+                <li><a href="../simplex/">Simplex</a></li>
+                <li><a href="../slate/">Slate</a></li>
+                <li><a href="../spacelab/">Spacelab</a></li>
+                <li><a href="../superhero/">Superhero</a></li>
+                <li><a href="../united/">United</a></li>
+                <li><a href="../yeti/">Yeti</a></li>
               </ul>
             </li>
             <li>
-              <p style="color:white;"><b>Welcome, 
-                    <?php
-                        echo $_COOKIE['username'];
-                    ?>
-                    </b></p>
-              </li>
-            <li style="a:right;">
-              <form action="index.php?action=logout" method="POST" role="form">
-                        <button type="submit" class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:15px;">Logout</button>
-                    </form>
-              </li>
+              <a href="../help/">Help</a>
+            </li>
+            <li>
+              <a href="http://news.bootswatch.com">Blog</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li><a href="css/bootstrap.min.css">bootstrap.min.css</a></li>
+                <li><a href="css/bootstrap.css">bootstrap.css</a></li>
+                <li class="divider"></li>
+                <li><a href="./variables.less">variables.less</a></li>
+                <li><a href="./bootswatch.less">bootswatch.less</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
           </ul>
 
         </div>
       </div>
     </div>
-        
-        
-        
-    <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h4 class="modal-title">About NashorDB</h4>
-                    </div>
-                    <div class="modal-body">
-                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.
-                    </div>
-                    <div class="modal-footer">
-                      &copy; CHRISLUK &nbsp;&nbsp;
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->    
-        
-    <div class="container" style="margin-top:-70px;">
+
+
+    <div class="container">
+
       <div class="page-header" id="banner">
         <div class="row">
-            <br><br><br><br><br><br>
-          <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="img/real_baron.png"/> 
-              <br>
-            <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
-            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
-            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; Add reasons to improve and justify mistakes</h3><br>
+          <div class="col-lg-8 col-md-7 col-sm-6">
+            <h1>Readable</h1>
+            <p class="lead">Optimized for legibility</p>
           </div>
-        
           <div class="col-lg-4 col-md-5 col-sm-6">
             <div class="sponsor">
-                <!--<div>
-                    
-                </div>-->
+                  <a href="http://gridgum.com/themes/category/bootstrap-themes/?utm_source=Bootswatch&utm_medium=250ad&utm_campaign=Bootswatch%20Campaign" target="_blank" onclick="_gaq.push(['_trackEvent', 'banner', 'click', 'gridgum']);"><img src="../assets/img/gridgum.png" alt="Gridgum" onload="_gaq.push(['_trackEvent', 'banner', 'impression', 'gridgum']);"></a>
             </div>
           </div>
         </div>
       </div>
-        
-        
-        
-                    <p style="color:white">
-                    <?php
-                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
-                        // find the last entries LP
-                        $username = $_COOKIE['username'];
-                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
 
-                        $lp_result = mysqli_query($connection, $lp_query);
-
-                        // fetch query results
-                        $lp_row = mysqli_fetch_assoc($lp_result);
-                        $lp_old = $lp_row['lp'];
-                        $div_query = "SELECT `division` FROM `".$username."` ORDER BY entry_id DESC limit 1";
-
-			// fetch division query results
-			$div_result = mysqli_query($connection, $div_query);
-			$div_row = mysqli_fetch_assoc($div_result);
-            if($div_row == false) {
-                echo "failed to retrieve division";
-                die();
-            }
-			$current_div = $div_row['division'];
-			$next_div = "";
-			switch ($current_div) {
-			    case "Bronze V":
-			        $next_div = "Bronze IV";
-			        break;
-			    case "Bronze IV":
-				$next_div = "Bronze III";
-				break;
-			    case "Bronze III":
-				$next_div = "Bronze II";
-				break;
-			    case "Bronze II":
-				$next_div = "Bronze I";
-				break;
-			    case "Bronze I":
-				$next_div = "Silver V";
-				break;
-			    case "Silver V":
-                                $next_div = "Silver IV";
-                                break;
-                            case "Silver IV":
-                                $next_div = "Silver III";
-                                break;
-                            case "Silver III":
-                                $next_div = "Silver II";
-                                break;
-                            case "Silver II":
-                                $next_div = "Silver I";
-                                break;
-                            case "Silver I":
-                                $next_div = "Gold V";
- 			    case "Gold V":
-                                $next_div = "Gold IV";
-                                break;
-                            case "Gold IV":
-                                $next_div = "Gold III";
-                                break;
-                            case "Gold III":
-                                $next_div = "Gold II";
-                                break;
-                            case "Gold II":
-                                $next_div = "Gold I";
-                                break;
-                            case "Gold I":
-                                $next_div = "Platinum V";
- 			    case "Platinum V":
-                                $next_div = "Platinum IV";
-                                break;
-                            case "Platinum IV":
-                                $next_div = "Platinum III";
-                                break;
-                            case "Platinum III":
-                                $next_div = "Platinum II";
-                                break;
-                            case "Platinum II":
-                                $next_div = "Platinum I";
-                                break;
-                            case "Platinum I":
-                                $next_div = "Diamond V";
-	                        break;
-			}
-
-                        if ($lp_old == 100) {
-                            echo "In Series! Next Division: ".$next_div;
-                        } else {
-			    echo "Next Division: ".$next_div;
-			}
-                    ?></p>
-            <div class="progress progress-striped active">
-                <div class="progress-bar"
-                     <?php
-                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
-                        /*$db_name = 'stats';
-                        mysql_select_db($db_name, $connection);*/
- 	
-                        // find the last entries LP
-                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
-                        $lp_result = mysqli_query($connection, $lp_query);
-                        // fetch query results
-	                $lp_row = mysqli_fetch_assoc($lp_result);
-                        $lp_old = $lp_row['lp'];
-                        echo "style='width: ".$lp_old."%'";
-                    ?>>
-                </div>
-            </div>    
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- /.panel -->
-                    <?php 
-					   echo tablegen(0,0); 
-					?>
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-upload fa-fw"></i> Add New Entry
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
-								<div class="form-group">
-                                    <label>Division:</label>
-                                    <select class="form-control" id="select" name="division">
-                                        <option>Master</option>
-                                        <option>Challenger</option>
-                                        <option>Diamond I</option>
-                                        <option>Diamond II</option>
-                                        <option>Diamond III</option>
-                                        <option>Diamond IV</option>
-                                        <option>Diamond V</option>
-                                        <option>Platinum I</option>
-                                        <option>Platinum II</option>
-                                        <option>Platinum III</option>
-                                        <option>Platinum IV</option>
-                                        <option>Platinum V</option>
-                                        <option>Gold I</option>
-                                        <option>Gold II</option>
-                                        <option>Gold III</option>
-                                        <option>Gold IV</option>
-                                        <option>Gold V</option>
-                                        <option>Silver I</option>
-                                        <option>Silver II</option>
-                                        <option>Silver III</option>
-                                        <option>Silver IV</option>
-                                        <option>Silver V</option>
-                                        <option>Bronze I</option>
-                                        <option>Bronze II</option>
-                                        <option>Bronze III</option>
-                                        <option>Bronze IV</option>
-                                        <option>Bronze V</option>
-                                    </select>
-								</div>
-                                <div class="form-group">
-                                    <label>LP:</label>
-                                    <input class="form-control" name="lp">
-								</div>
-                                <div class="form-group">
-                                    <label>Champion:</label>
-                                    <input class="form-control" name="champion">
-								</div>
-                                <div class="form-group">
-                                    <label>Position:</label>
-                                    <select class="form-control" id="select" name="position">
-                                        <option>Top</option>
-                                        <option>Jungle</option>
-                                        <option>Mid</option>
-                                        <option>Marksman</option>
-                                        <option>Support</option>
-                                    </select>
-								</div>
-								<div class="form-group">
-									<label>KDA:</label>
-                                    <input class="form-control" name="kda">
-								</div>
-                                <div class="form-group">
-									<label>CS:</label>
-                                    <input class="form-control" name="cs">
-								</div>
-                                <div class="form-group">
-									<label>Mistakes:</label>
-                                    <input class="form-control" name="mistakes">
-								</div>
-								<div class="form-group">
-									<label>Improve By:</label>
-                                    <input class="form-control" name="improvements">
-                                </div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Add Entry</button>
-							</form>
-						</div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
-            </div>
-
-
-        <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        
-        <!-------------- REVIEWS -------------->
-
-        <div class="row">
-          <div class="col-lg-12">
-            <h2 style="color:#FFF87C;" id="type-blockquotes">What People Are Saying</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="bs-component">
-              <blockquote>
-                <p style="color:white;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
-                <small style="color:#FFF87C;"><cite title="Source Title">Emperor Googz</cite></small>
-              </blockquote>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="bs-component">
-              <blockquote class="pull-right">
-                <p style="color:white;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
-                <small style="color:#FFF87C;"> <cite title="Source Title">Chombol</cite></small>
-              </blockquote>
-            </div>
-          </div>
-            
-        </div>
-      </div>
-
-        
-        
-        <div align="center" class="col-lg-6">  
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Most Played Champions
-                </div>
-            <div class="panel-body">
-               <div style="height:450px;" id="morris-file-bar">
-               </div>
-            </div>
-            </div>
-        </div>
-        
-        
-        
-        
-        
-        <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
       <!-- Navbar
       ================================================== -->
       <div class="bs-docs-section clearfix">
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header">
-              <h1 style="color:white;" id="navbar">Navbar</h1>
+              <h1 id="navbar">Navbar</h1>
             </div>
+
             <div class="bs-component">
               <div class="navbar navbar-default">
                 <div class="navbar-header">
@@ -941,7 +648,33 @@ if (isset($_GET['page'])) {
           </div>
         </div>
 
-        
+        <!-- Blockquotes -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 id="type-blockquotes">Blockquotes</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="bs-component">
+              <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+              </blockquote>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="bs-component">
+              <blockquote class="pull-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Tables
       ================================================== -->
       <div class="bs-docs-section">
@@ -1739,20 +1472,17 @@ if (isset($_GET['page'])) {
 
             <ul class="list-unstyled">
               <li class="pull-right"><a href="#top">Back to top</a></li>
-              <li><a href="http://facebook.com/cel2971">Facebook</a></li>
-              <li><a href="https://twitter.com/emperorsyno">Twitter</a></li>
-              <li><a href="https://github.com/cluk2971">GitHub</a></li>
-              <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="E5ZKZUSU935DL">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-</li>
+              <li><a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;">Blog</a></li>
+              <li><a href="http://feeds.feedburner.com/bootswatch">RSS</a></li>
+              <li><a href="https://twitter.com/bootswatch">Twitter</a></li>
+              <li><a href="https://github.com/thomaspark/bootswatch/">GitHub</a></li>
+              <li><a href="../help/#api">API</a></li>
+              <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F22JEM3Q78JC2">Donate</a></li>
             </ul>
-            <p>Made by <a href="http://chrisluk.im" rel="nofollow">Chris Luk</a>. Email: <a href="mailto:luk@chrisluk.im">baron@nashordb.net</a>.</p>
+            <p>Made by <a href="http://thomaspark.me" rel="nofollow">Thomas Park</a>. Contact him at <a href="mailto:thomas@bootswatch.com">thomas@bootswatch.com</a>.</p>
             <p>Code released under the <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
             <p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
           </div>
         </div>
 
@@ -1760,35 +1490,11 @@ if (isset($_GET['page'])) {
 
 
     </div>
+
+
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"/>
-    <script src="js/plugins/morris/morris.js"/>
-    <script src="js/bootstrap.js"/>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootswatch.js"></script>
-        
-    <?php
-	$db = mysqli_connect("localhost", "root", "supfoo2971", "stats");
-	$result = mysqli_query($db,"SELECT champion, count(*) FROM stats_luk GROUP BY champion ORDER BY count(*) DESC LIMIT 5;");
-	$errors = mysqli_fetch_all($result);
-	$datas = "";
-	foreach ($errors as &$val) {
-		$val[0] = basename($val[0]);
-		$datas .= "{ y: '$val[0]', a: $val[1]},";
-	}
-	?>
-	
-	<script>
-	Morris.Bar({
-		element: 'morris-file-bar',
-		data: [
-		<?php echo $datas; ?>
-			],
-		xkey: 'y',
-		ykeys: ['a'],
-		labels: ['Count']
-	});
-	</script>
-        
+    <script src="js/bootswatch.js"></script>
   </body>
 </html>
+
