@@ -4,15 +4,15 @@
 date_default_timezone_set('America/New_York');
 
 //require supporting functions
-require_once("/Library/WebServer/Documents/NashorDB/tablegen.php");
-require_once("/Library/WebServer/Documents/NashorDB/gen_roster.php");
-require_once("/Library/WebServer/Documents/NashorDB/checklogin.php");
-require_once("/Library/WebServer/Documents/NashorDB/add_entry.php");
-require_once("/Library/WebServer/Documents/NashorDB/add_roster.php");
-require_once("/Library/WebServer/Documents/NashorDB/add_teamcomp.php");
-require_once("/Library/WebServer/Documents/NashorDB/genchecklist.php");
-require_once("/Library/WebServer/Documents/NashorDB/gen_team_comp.php");
-require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
+require_once("tablegen.php");
+require_once("gen_roster.php");
+require_once("checklogin.php");
+require_once("add_entry.php");
+require_once("add_roster.php");
+require_once("add_teamcomp.php");
+require_once("genchecklist.php");
+require_once("gen_team_comp.php");
+require_once("genlatestmsg.php");
 
 //set login status and messages to default
 $loggedin = FALSE;
@@ -51,7 +51,7 @@ if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
 //if they're not logged in, send them back to the login page
 //sorry!
 if (!$loggedin) {
-header('Location: http://localhost/NashorDB/login.php?warning='.$warning);
+header('Location: http://www.nashordb.net/login.php?warning='.$warning);
 die();
 }
 
@@ -77,7 +77,7 @@ if (isset($_GET['action'])) {
         unset($_COOKIE['username']);
         setcookie("loggedin", null, -1);
         setcookie("username", null, -1);
-		header('Location: http://localhost/NashorDB/login.php?warning=loggedout');
+		header('Location: http://www.nashordb.net/login.php?warning=loggedout');
 		die();
 	break;
     
@@ -250,7 +250,7 @@ if (isset($_GET['page'])) {
     </script>
   </head>
     
-    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="/NashorDB/img/nashor_bg.png">
+    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
     
         
         
@@ -274,7 +274,7 @@ if (isset($_GET['page'])) {
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a data-toggle="modal" href="#about-modal">ABOUT</a>
+              <a class="btn btn-success" data-toggle="modal" href="#about-modal">ABOUT</a>
               <!-- Modal -->
             </li>
             <li class="dropdown">
@@ -291,7 +291,7 @@ if (isset($_GET['page'])) {
         <div align="right">
             <ul style="position:abolute;">
                 <div align="right">
-                <input placeholder="Username" style="width:150px; margin-left:300px; margin-top:15px; margin-right: 12px;" type="text" class="input-sm form-control col-lg-8" name="username" value=""> 
+                <input placeholder="Username" style="width:150px; margin-left:383px; margin-top:15px; margin-right: 12px;" type="text" class="input-sm form-control col-lg-8" name="username" value=""> 
                     <input placeholder="Password" style="width:150px; margin-top:15px; margin-bottom:10px;" type="password" class="input-sm form-control col-lg-8" name="password" value="">
                  </div>
                     <button class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:15px;">Login</button><button style="margin-top:15px;margin-left:12px;" class="btn btn-sm btn-danger" style="color: #000000" href="#">Register</button>
@@ -326,8 +326,8 @@ if (isset($_GET['page'])) {
         <div class="row">
             <br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-137px; height:100px; weight:100px;" src="/NashorDB/img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-160px; right:40px;height:300px; weight:300px;" src="/NashorDB/img/real_baron.png"/> 
+            <img align="left" style="position: absolute; top:-137px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
+             <img align="middle" style="position: absolute; top:-160px; right:40px;height:300px; weight:300px;" src="img/real_baron.png"/> 
               <br>
             <h2 align="left" style="margin-bottom:7px; margin-top: -5px; color:white;">LOG YOUR SOLO Q STATS</h2>
             <h2 align="left" class="bs-component" style="color:white; margin-top: px; margin-bottom:7px;">ENTER POST GAME DETAILS, IMPROVE YOUR PLAY!</h2>
@@ -1780,9 +1780,9 @@ if (isset($_GET['page'])) {
 
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/NashorDB/js/bootstrap.min.js"/>
-    <script src="/NashorDB/js/bootstrap.js"/>
+    <script src="js/bootstrap.min.js"/>
+    <script src="js/bootstrap.js"/>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/js/bootswatch.js"></script>
+    <script src="assets/js/bootswatch.js"></script>
   </body>
 </html>

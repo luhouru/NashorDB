@@ -13,7 +13,7 @@ if (isset($_GET['warning'])) {
 		$warningtext = "<div class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
 		break;
 		case "loggedout":
-		$warningtext = "<div class=\"alert alert-danger\">You are logged out.</div>";
+		$warningtext = "<div style=\"width:200px;\"class=\"alert alert-warning\">You are logged out.</div>";
 		break;
 		default:
 		$warningtext = "";
@@ -23,15 +23,15 @@ if (isset($_GET['warning'])) {
 
 
 //require supporting functions
-require_once("/Library/WebServer/Documents/NashorDB/tablegen.php");
-require_once("/Library/WebServer/Documents/NashorDB/gen_roster.php");
-require_once("/Library/WebServer/Documents/NashorDB/checklogin.php");
-require_once("/Library/WebServer/Documents/NashorDB/add_entry.php");
-require_once("/Library/WebServer/Documents/NashorDB/add_roster.php");
-require_once("/Library/WebServer/Documents/NashorDB/add_teamcomp.php");
-require_once("/Library/WebServer/Documents/NashorDB/genchecklist.php");
-require_once("/Library/WebServer/Documents/NashorDB/gen_team_comp.php");
-require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
+require_once("tablegen.php");
+require_once("gen_roster.php");
+require_once("checklogin.php");
+require_once("add_entry.php");
+require_once("add_roster.php");
+require_once("add_teamcomp.php");
+require_once("genchecklist.php");
+require_once("gen_team_comp.php");
+require_once("genlatestmsg.php");
 
 ?>
 
@@ -73,7 +73,7 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
     </script>
   </head>
     
-    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="/NashorDB/img/nashor_bg.png">
+    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
     
         
         
@@ -87,7 +87,6 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
     <div class="navbar navbar-default" style="margin-top:-30px;background-color: transparent">
       <div class="container">
         <div class="navbar-header" style="background:transparent; background-color:transparent;">
-          <a style="color: #4582ec" class="navbar-brand" href="http://chrisluk.im">CHRISLUK<img src="img/logo.PNG" style="margin-top:-4px;margin-left:13px;" height="25" width="25"/></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -97,7 +96,7 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav" >
             <li>
-              <a data-toggle="modal" href="#about-modal">ABOUT</a>
+              <a class="btn btn-success" data-toggle="modal" href="#about-modal">ABOUT</a>
               <!-- Modal -->
             </li>
             <li class="dropdown">
@@ -111,13 +110,12 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
               </ul>
             </li>
           </ul>
-        <?php echo $warningtext; ?>
         <div align="right">
             <ul>
                 <form action="index.php?action=login" method="POST" role="form">
                 <fieldset>
                     <div class="form-group">
-                <input placeholder="Username" style="width:150px; margin-left:229px; margin-top:16px;" type="text" class="input-md form-control col-lg-8" name="email" value=""> 
+                <input placeholder="Username" style="width:150px; margin-left:383px; margin-top:16px;" type="text" class="input-md form-control col-lg-8" name="email" value=""> 
                     </div>
                     <div class="form-group">
                     <input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-8" name="password" value="">
@@ -154,8 +152,8 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
         <div class="row">
             <br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="/NashorDB/img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="/NashorDB/img/real_baron.png"/> 
+            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
+             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="img/real_baron.png"/> 
               <br>
             <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
             <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
@@ -177,7 +175,60 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
                     <p style="color:white">Watch your progress bar as you approach 100 LP!</p>
             <div class="progress progress-striped active">
                 <div class="progress-bar" style="width: 90%";></div>
-            </div>    
+            </div>   
+        
+        
+        
+    <div style="padding-bottom:3px;" class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-table fa-fw"></i> Post-Game Statistics
+        </div>
+                <!-- /.panel-heading -->
+        <div class="panel-body">
+           <div class="row">
+              <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table data-pagination="true" class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 60px;">Division</th>
+                                                    <th style="width: 25px;">LP</th>
+                                                    <th style="width: 25px;">Gain</th>
+                                                    <th style="width: 60px;">Champion</th>
+                                                    <th style="width: 60px;">Position</th>
+                                                    <th style="width: 40px;">KDA</th>
+                                                    <th style="width: 20px;">CS</th>
+                                                    <th style="width: 75px;">Mistakes</th>
+                                                    <th style="width: 75px;">Improvements</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            '.$tbody.'
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-12 (nested) -->
+                                <div class="col-lg-12">
+                                    <div id="morris-bar-chart"></div>
+                                </div>
+                                <!-- /.col-lg-12 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+        
+        
+        
+        
+        
+        
+        
+        <!--FORM TO ADD ENTRY-->
+        <br><br><br><br>
             <div class="row">
                 <div class="page-header">
                     <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
@@ -1477,9 +1528,9 @@ require_once("/Library/WebServer/Documents/NashorDB/genlatestmsg.php");
 
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/NashorDB/js/bootstrap.min.js"/>
-    <script src="/NashorDB/js/bootstrap.js"/>
+    <script src="js/bootstrap.min.js"/>
+    <script src="js/bootstrap.js"/>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/js/bootswatch.js"></script>
+    <script src="assets/js/bootswatch.js"></script>
   </body>
 </html>
