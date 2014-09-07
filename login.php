@@ -84,7 +84,7 @@ require_once("genlatestmsg.php");
     
         
         
-    <div class="navbar navbar-default" style="margin-top:-30px;background-color: transparent">
+    <div class="navbar navbar-default nav-fixed-top" style="margin-top:-30px;background-color: transparent">
       <div class="container">
         <div class="navbar-header" style="background:transparent; background-color:transparent;">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
@@ -96,11 +96,11 @@ require_once("genlatestmsg.php");
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav" >
             <li>
-              <a class="btn btn-success" data-toggle="modal" href="#about-modal">ABOUT</a>
+              <button style="background-color: #FFFFFF;border: 1px solid #bebebe;" class="btn btn-default" data-toggle="modal" href="#about-modal">ABOUT</button>
               <!-- Modal -->
             </li>
             <li class="dropdown">
-              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></a>
+              <button style="margin-left:12px;background-color: #FFFFFF;border: 1px solid #bebebe;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></button>
               <ul class="dropdown-menu" aria-labelledby="download">
                 <li><a href="http://lolking.net">LOLKING</a></li>
                 <li><a href="http://op.gg">OP.GG</a></li>
@@ -115,13 +115,12 @@ require_once("genlatestmsg.php");
             <ul>
                 <fieldset>
                     <div class="form-group">
-                <input placeholder="Username" style="width:150px; margin-left:383px; margin-top:16px;" type="text" class="input-md form-control col-lg-8" name="username" value=""> 
+                    <input placeholder="Username" style="width:150px; margin-left:397px;" type="text" class="input-md form-control col-lg-4" name="username" value=""><input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-4" name="password" value="">
                     </div>
-                    <div class="form-group">
-                    <input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-8" name="password" value="">
-                    </div>
+                    
                 </fieldset>
-                    <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px; margin-left:-12px;margin-top:-66px;" value="Login"><button style="width:100px;margin-top:-66px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#">Register</button>
+                <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px;margin-top:-64px;" value="Login"><button style="width:100px;margin-top:-64px;margin-left:12px;" class="btn btn-md btn-success" style="color: #000000" href="#">Register</button>
+                    
              </ul>
              </form>
         </div>
@@ -129,7 +128,18 @@ require_once("genlatestmsg.php");
         </div>
       </div>
     </div>
-
+    <div style="position:relative;display:inline-block;">
+       <button style="margin-top:420px;margin-left:1455px;position:absolute;width:50px;" href="#" type="button" class="btn btn-danger"><b class="caret"></b></button>
+    </div>
+    
+      <div style="margin-top:300px;margin-left:930px;position:absolute;overflow: hidden;" align="middle" class="col-lg-4">
+            <div class="bs-component">
+              <h2 style="color:white;">Post-Game Logging System</h2><br>
+              <p style="margin-left:3em;color:white;" align="left">&#8594; Record your match details by filling out forms</p>
+              <p style="margin-left:3em;color:white;" align="left">&#8594; Actively view your progress on a user-friendly table</p>
+              <p style="margin-left:3em;color:white;" align="left">&#8594; List mistakes or things you could have done differently</p>
+            </div>
+        </div>       
     <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -138,7 +148,8 @@ require_once("genlatestmsg.php");
                       <h4 class="modal-title">About NashorDB</h4>
                     </div>
                     <div class="modal-body">
-                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.
+                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.<br><br>
+                      All images and artwork on this website are owned by Riot Games.
                     </div>
                     <div class="modal-footer">
                       &copy; CHRISLUK &nbsp;&nbsp;
@@ -153,8 +164,15 @@ require_once("genlatestmsg.php");
         <div class="row">
             <br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-            <img href='#' onclick="location.reload(true);" align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="img/real_baron.png"/> 
+              
+              <div style="position: relative; left: 0; top: 0;">
+                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:690px;position: absolute; top:-182px; height:230px; weight:230px;overflow: hidden;" src="img/nashordb_logo2.png"/>
+                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-120px;top:-254px;height:680px; weight:650px;" src="img/real_baron.png"/> 
+              </div>
+            
+
+              
+              
               <br>
             <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
             <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
