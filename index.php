@@ -585,7 +585,6 @@ if (isset($_GET['page'])) {
 
         
         
-        
         <div align="center" class="col-lg-6">  
             <div class="panel panel-primary">
                 <div class="panel-heading">
