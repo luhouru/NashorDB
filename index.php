@@ -51,7 +51,7 @@ if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
 //if they're not logged in, send them back to the login page
 //sorry!
 if (!$loggedin) {
-header('Location: http://www.nashordb.net/login.php?warning='.$warning);
+header('Location: login.php?warning='.$warning);
 die();
 }
 
@@ -77,7 +77,7 @@ if (isset($_GET['action'])) {
         unset($_COOKIE['username']);
         setcookie("loggedin", null, -1);
         setcookie("username", null, -1);
-		header('Location: http://www.nashordb.net/login.php?warning=loggedout');
+		header('Location: login.php?warning=loggedout');
 		die();
 	break;
     
