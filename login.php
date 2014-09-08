@@ -170,28 +170,11 @@ require_once("genlatestmsg.php");
                   <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-210px;height:600px; weight:600px;" src="img/real_baron.png"/> 
               </div>
             
-
-              
-              
-              <br>
-            <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
-            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
-            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; Add reasons to improve and justify mistakes</h3><br>
-          </div>
-        
-          <div class="col-lg-4 col-md-5 col-sm-6">
-            <div class="sponsor">
-                <!--<div>
-                    
-                </div>-->
-            </div>
-          </div>
-        
-        </div>
-      </div>
-
-        
-                <img align="left" style="position: relative;" src="img/sample_table.png"/>
+    <div class="row">
+        <div class="page-header">
+            <h1 id="tables" style="color:white;">MATCH HISTORY LOGS</h1>
+         </div>
+         <img align="left" style="position: relative;" src="img/sample_table.png"/>
         
         <!--FORM TO ADD ENTRY-->
         <br><br><br><br><br><br><br><br>
