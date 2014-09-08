@@ -183,7 +183,7 @@ require_once("genlatestmsg.php");
                         <div class="form-group">
                             <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                             </div>
                         </div>
                         
@@ -266,11 +266,11 @@ require_once("genlatestmsg.php");
 								</div>
                                 <div class="form-group">
                                     <label>Current LP:</label>
-                                    <input class="form-control" name="lp">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp" disabled>
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
-                                    <input class="form-control" name="champion">
+                                    <input class="form-control" name="champion" disabled>
 								</div>
                             </div>
                             <div class="col-lg-4">
@@ -287,21 +287,21 @@ require_once("genlatestmsg.php");
                             
 								<div class="form-group">
 									<label>KDA:</label>
-                                    <input class="form-control" name="kda">
+                                    <input placeholder="0/0/0" class="form-control" name="kda" disabled>
 								</div>
                                 <div class="form-group">
 									<label>CS:</label>
-                                    <input class="form-control" name="cs">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs" disabled>
 								</div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
 									<label>Mistakes:</label>
-                                    <input class="form-control" name="mistakes">
+                                    <input class="form-control" name="mistakes" disabled>
 								</div>
 								<div class="form-group">
 									<label>Improve By:</label>
-                                    <input class="form-control" name="improvements">
+                                    <input class="form-control" name="improvements" disabled>
                                 </div>
                             <div class="form-group">
 							<button type="submit" align="center" style="margin-top:35px;" class="disabled btn btn-info btn-lg btn-block">Add Entry</button></div>
@@ -314,6 +314,7 @@ require_once("genlatestmsg.php");
                 </div>
                 <!-- /.col-lg-8 -->
             </div>
+        </div>
 
 
         <br><br><br><br><br><br>

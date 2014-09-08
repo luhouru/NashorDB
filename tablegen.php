@@ -70,9 +70,9 @@ $next--;
 $forstyle = "btn-primary";
 }
 
-$result = '<div style="padding-bottom:3px;" class="panel panel-primary">
+$result = '<div style="padding-bottom:3px;" class="panel panel-success">
                         <div class="panel-heading">
-                            <i class="fa fa-table fa-fw"></i> Post-Game Statistics
+                            <i class="fa fa-table fa-fw"></i> Performance Chart
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

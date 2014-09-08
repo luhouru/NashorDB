@@ -248,6 +248,13 @@ if (isset($_GET['page'])) {
      })();
 
     </script>
+    <style>
+        ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+        ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+        ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+            color: transparent;
+        }
+      </style>  
   </head>
   <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
     <div class="navbar navbar-default navbar-relative-top" style="background-color:transparent;">
@@ -362,7 +369,6 @@ if (isset($_GET['page'])) {
 			$div_result = mysqli_query($connection, $div_query);
 			$div_row = mysqli_fetch_assoc($div_result);
             if($div_row == false) {
-                echo "failed to retrieve division";
                 die();
             }
 			$current_div = $div_row['division'];
@@ -444,6 +450,9 @@ if (isset($_GET['page'])) {
                         // find the last entries LP
                         $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
                         $lp_result = mysqli_query($connection, $lp_query);
+                        if ($lp_result == false) {
+                            die();
+                        }
                         // fetch query results
 	                $lp_row = mysqli_fetch_assoc($lp_result);
                         $lp_old = $lp_row['lp'];
@@ -511,7 +520,7 @@ if (isset($_GET['page'])) {
 								</div>
                                 <div class="form-group">
                                     <label>Current LP:</label>
-                                    <input class="form-control" name="lp">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp">
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
@@ -532,11 +541,11 @@ if (isset($_GET['page'])) {
                             
 								<div class="form-group">
 									<label>KDA:</label>
-                                    <input class="form-control" name="kda">
+                                    <input placeholder="0/0/0" class="form-control" name="kda">
 								</div>
                                 <div class="form-group">
 									<label>CS:</label>
-                                    <input class="form-control" name="cs">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs">
 								</div>
                             </div>
                             <div class="col-lg-4">
