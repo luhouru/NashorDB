@@ -250,7 +250,7 @@ if (isset($_GET['page'])) {
     </script>
   </head>
   <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-relative-top" style="background-color:transparent;">
       <div class="container">
         <div class="navbar-header">
           <a href="../" class="navbar-brand">Bootswatch</a>
@@ -304,8 +304,7 @@ if (isset($_GET['page'])) {
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
-            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+            <li><form action="index.php?action=logout" method="POST" role="form"><button style="margin-top:12px;" class="btn btn-danger btn-md" type="submit">LOGOUT</button></form></li>
           </ul>
 
         </div>
@@ -317,30 +316,27 @@ if (isset($_GET['page'])) {
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
-            <h1>Readable</h1>
-            <p class="lead">Optimized for legibility</p>
+            <h1 style="color:white;">MY DASHBOARD</h1>
+            <p style="color:white;" class="lead">For all your League of Legends needs!</p>
           </div>
           <div class="col-lg-4 col-md-5 col-sm-6">
             <div class="sponsor">
-                  <a href="http://gridgum.com/themes/category/bootstrap-themes/?utm_source=Bootswatch&utm_medium=250ad&utm_campaign=Bootswatch%20Campaign" target="_blank" onclick="_gaq.push(['_trackEvent', 'banner', 'click', 'gridgum']);"><img src="../assets/img/gridgum.png" alt="Gridgum" onload="_gaq.push(['_trackEvent', 'banner', 'impression', 'gridgum']);"></a>
             </div>
           </div>
         </div>
       </div>
         
-         <br> <br> <br> <br> <br> <br> <br>
         <!--MOST PLAYED CHAMPIONS MORRIS CHART-->
         <div class="row">
             <div class="col-lg-12">
                 <!-- /.panel -->
                  <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Top Errors Barchart
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Most Played Champions
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div style="height:325px;" id="morris-file-bar">	
-				        </div>
+                        <div style="height:325px;" id="morris-file-bar"></div>
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -348,8 +344,114 @@ if (isset($_GET['page'])) {
             </div>
         </div>
         
+        <p style="color:white">
+                    <?php
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                        // find the last entries LP
+                        $username = $_COOKIE['username'];
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
+
+                        $lp_result = mysqli_query($connection, $lp_query);
+
+                        // fetch query results
+                        $lp_row = mysqli_fetch_assoc($lp_result);
+                        $lp_old = $lp_row['lp'];
+                        $div_query = "SELECT `division` FROM `".$username."` ORDER BY entry_id DESC limit 1";
+
+			// fetch division query results
+			$div_result = mysqli_query($connection, $div_query);
+			$div_row = mysqli_fetch_assoc($div_result);
+            if($div_row == false) {
+                echo "failed to retrieve division";
+                die();
+            }
+			$current_div = $div_row['division'];
+			$next_div = "";
+			switch ($current_div) {
+			    case "Bronze V":
+			        $next_div = "Bronze IV";
+			        break;
+			    case "Bronze IV":
+				$next_div = "Bronze III";
+				break;
+			    case "Bronze III":
+				$next_div = "Bronze II";
+				break;
+			    case "Bronze II":
+				$next_div = "Bronze I";
+				break;
+			    case "Bronze I":
+				$next_div = "Silver V";
+				break;
+			    case "Silver V":
+                                $next_div = "Silver IV";
+                                break;
+                            case "Silver IV":
+                                $next_div = "Silver III";
+                                break;
+                            case "Silver III":
+                                $next_div = "Silver II";
+                                break;
+                            case "Silver II":
+                                $next_div = "Silver I";
+                                break;
+                            case "Silver I":
+                                $next_div = "Gold V";
+ 			    case "Gold V":
+                                $next_div = "Gold IV";
+                                break;
+                            case "Gold IV":
+                                $next_div = "Gold III";
+                                break;
+                            case "Gold III":
+                                $next_div = "Gold II";
+                                break;
+                            case "Gold II":
+                                $next_div = "Gold I";
+                                break;
+                            case "Gold I":
+                                $next_div = "Platinum V";
+ 			    case "Platinum V":
+                                $next_div = "Platinum IV";
+                                break;
+                            case "Platinum IV":
+                                $next_div = "Platinum III";
+                                break;
+                            case "Platinum III":
+                                $next_div = "Platinum II";
+                                break;
+                            case "Platinum II":
+                                $next_div = "Platinum I";
+                                break;
+                            case "Platinum I":
+                                $next_div = "Diamond V";
+	                        break;
+			}
+
+                        if ($lp_old == 100) {
+                            echo "In Series! Next Division: ".$next_div;
+                        } else {
+			    echo "Next Division: ".$next_div;
+			}
+                    ?></p>
+            <div class="progress progress-striped active">
+                <div class="progress-bar"
+                     <?php
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                        /*$db_name = 'stats';
+                        mysql_select_db($db_name, $connection);*/
+ 	
+                        // find the last entries LP
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
+                        $lp_result = mysqli_query($connection, $lp_query);
+                        // fetch query results
+	                $lp_row = mysqli_fetch_assoc($lp_result);
+                        $lp_old = $lp_row['lp'];
+                        echo "style='width: ".$lp_old."%'";
+                    ?>>
+                </div>
+            </div>    
         
-        <br><br><br><br>
         <!--THIS IS WHERE THE PERFORMANCE TABLE WILL BE-->
         <div class="row">
                 <div class="col-lg-12">
@@ -361,13 +463,6 @@ if (isset($_GET['page'])) {
         </div>
         
         
-        
-        
-
-
-        <!--FORM TO ADD ENTRY-->
-        <br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br>
             <div class="row">
                 <div class="page-header">
                     <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
@@ -464,7 +559,7 @@ if (isset($_GET['page'])) {
                 </div>
                 <!-- /.col-lg-8 -->
             </div>
-        
+        </div>
         
         
         <br> <br> <br> <br> <br> <br> <br>
