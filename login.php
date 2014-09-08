@@ -7,13 +7,13 @@ $warningtext = "";
 if (isset($_GET['warning'])) {
 	switch($_GET['warning']) {
 		case "badlogin":
-		$warningtext = "<div class=\"alert alert-danger\">Invalid Credentials.</div>";
+		$warningtext = "<div class=\"alert alert-danger text-center\"><strong>Invalid Credentials.</strong></div>";
 		break;
 		case "unknown":
-		$warningtext = "<div class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
+		$warningtext = "<div class=\"alert alert-danger text-center\"><strong>An error has occurred. You have been logged out.</strong></div>";
 		break;
 		case "loggedout":
-		$warningtext = "<div style=\"width:200px;\"class=\"alert alert-warning\">You are logged out.</div>";
+		$warningtext = "<div style=\"width:50%;margin-left: auto;margin-right: auto;\" class=\"alert alert-success text-center\"><strong>You are logged out.</strong></div>";
 		break;
 		default:
 		$warningtext = "";
@@ -55,6 +55,8 @@ require_once("genlatestmsg.php");
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="../bower_components/respond/dest/respond.min.js"></script>
     <![endif]-->
+    <script type='text/javascript' src='js/jquery.scrollTo.js'></script>
+	<script type='text/javascript' src='js/jquery.scrollTo.min.js'></script>
     <script src="bootstrap.min.js"/>
     <script>
 
@@ -128,8 +130,10 @@ require_once("genlatestmsg.php");
         </div>
       </div>
     </div>
+        
+    <?php echo $warningtext; ?>
     
-      <div style="margin-top:300px;margin-left:820px;position:absolute;overflow: hidden;" align="middle" class="col-lg-4">
+      <!--<div style="margin-top:300px;margin-left:820px;position:absolute;overflow: hidden;" align="middle" class="col-lg-4">
             <div class="bs-component">
               <h2 style="color:white;">Post-Game Logging System</h2><br>
               <p style="margin-left:3em;color:white;" align="left">&#8594; Record your match details by filling out forms</p>
@@ -137,10 +141,10 @@ require_once("genlatestmsg.php");
               <p style="margin-left:3em;color:white;" align="left">&#8594; List mistakes or things you could have done differently</p>
             </div>
         </div>  
+        -->
         
         
-        
-    <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div style="margin-top:175px;margin-left:auto;margin-right:auto;" class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -164,17 +168,18 @@ require_once("genlatestmsg.php");
         <div class="row">
             <br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
-              
               <div style="position: relative; left: 0; top: 0;">
-                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:630px;position: absolute; top:-182px; height:230px; weight:230px;overflow: hidden;" src="img/nashordb_logo2.png"/>
-                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-210px;height:600px; weight:600px;" src="img/real_baron.png"/> 
+                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:630px;position: absolute; top:-182px; height:200px; weight:200px;overflow: hidden;" src="img/nashordb_logo2.png"/>
+                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-210px;height:550px; weight:550px;" src="img/fadedbaron.png"/>
+                  <button href="#table" style="margin-left:135px;width:200px;" class="btn btn-danger">SHOW ME</button>
               </div>
+       
             
-    <div class="row">
+    <div id="#table" class="row">
         <div class="page-header">
             <h1 id="tables" style="color:white;">MATCH HISTORY LOGS</h1>
          </div>
-         <img align="left" style="position: relative;" src="img/sample_table.png"/>
+         <img style="position: relative;margin-left: auto;margin-right: auto;" src="img/sample_table.png"/>
         
         <!--FORM TO ADD ENTRY-->
         <br><br><br><br><br><br><br><br>
