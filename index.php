@@ -24,20 +24,26 @@ $alertset = FALSE;
 //check to see if they're logging in
 //note: load nothing until login is confirmed
 if (isset($_GET['action'])) {
-	if ($_GET['action'] == "login") {
-		if (checklogin($_POST['username'],$_POST['password'])) {
-		$loggedin = TRUE;
-		$warning = "goodlogin";
-		if (isset($_POST['remember'])) {
-		$plustime = time();
-		} else {
-		$plustime = 3600;
-		}
-		setcookie("loggedin", TRUE, time()+$plustime);
-		setcookie("username", $_POST['username'], time()+$plustime);
-		} else {
-		$warning = "badlogin&username=".$_POST['username'];
-		}
+    switch($_GET['action']) {
+	    case "login":
+            if (checklogin($_POST['username'],$_POST['password'])) {
+            $loggedin = TRUE;
+            $warning = "goodlogin";
+            if (isset($_POST['remember'])) {
+            $plustime = time();
+            } else {
+            $plustime = 3600;
+            }
+            setcookie("loggedin", TRUE, time()+$plustime);
+            setcookie("username", $_POST['username'], time()+$plustime);
+            } else {
+            $warning = "badlogin&username=".$_POST['username'];
+            }
+            break;
+        case "register":
+            echo "REGISTERED?";
+            die();
+            break;
 	}
 }
 
