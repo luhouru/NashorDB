@@ -128,18 +128,18 @@ require_once("genlatestmsg.php");
         </div>
       </div>
     </div>
-    <div style="position:relative;display:inline-block;">
-       <button style="margin-top:420px;margin-left:1455px;position:absolute;width:50px;" href="#" type="button" class="btn btn-danger"><b class="caret"></b></button>
-    </div>
     
-      <div style="margin-top:300px;margin-left:930px;position:absolute;overflow: hidden;" align="middle" class="col-lg-4">
+      <div style="margin-top:300px;margin-left:820px;position:absolute;overflow: hidden;" align="middle" class="col-lg-4">
             <div class="bs-component">
               <h2 style="color:white;">Post-Game Logging System</h2><br>
               <p style="margin-left:3em;color:white;" align="left">&#8594; Record your match details by filling out forms</p>
               <p style="margin-left:3em;color:white;" align="left">&#8594; Actively view your progress on a user-friendly table</p>
               <p style="margin-left:3em;color:white;" align="left">&#8594; List mistakes or things you could have done differently</p>
             </div>
-        </div>       
+        </div>  
+        
+        
+        
     <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -166,8 +166,8 @@ require_once("genlatestmsg.php");
           <div style="margin-top:100px;" class="col-lg-12">
               
               <div style="position: relative; left: 0; top: 0;">
-                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:690px;position: absolute; top:-182px; height:230px; weight:230px;overflow: hidden;" src="img/nashordb_logo2.png"/>
-                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-120px;top:-254px;height:680px; weight:650px;" src="img/real_baron.png"/> 
+                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:630px;position: absolute; top:-182px; height:230px; weight:230px;overflow: hidden;" src="img/nashordb_logo2.png"/>
+                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-210px;height:600px; weight:600px;" src="img/real_baron.png"/> 
               </div>
             
 
