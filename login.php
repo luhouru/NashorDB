@@ -230,8 +230,8 @@ require_once("genlatestmsg.php");
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="col-lg-4">
                             <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
+                            <div class="col-lg-4">
 								<div class="form-group">
                                     <label>Division:</label>
                                     <select class="form-control" id="select" name="division">

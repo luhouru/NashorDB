@@ -314,7 +314,6 @@ if (isset($_GET['page'])) {
 
 
     <div class="container">
-
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
@@ -328,7 +327,147 @@ if (isset($_GET['page'])) {
           </div>
         </div>
       </div>
+        
+         <br> <br> <br> <br> <br> <br> <br>
+        <!--MOST PLAYED CHAMPIONS MORRIS CHART-->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- /.panel -->
+                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Top Errors Barchart
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div style="height:325px;" id="morris-file-bar">	
+				        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        
+        
+        <br><br><br><br>
+        <!--THIS IS WHERE THE PERFORMANCE TABLE WILL BE-->
+        <div class="row">
+                <div class="col-lg-12">
+                    <!-- /.panel -->
+                    <?php 
+					   echo tablegen(0,0); 
+					?>
+                </div>
+        </div>
+        
+        
+        
+        
 
+
+        <!--FORM TO ADD ENTRY-->
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="page-header">
+                    <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
+                    <p style="color:white;margin-left:3em;">Use this form to log your post-game data.</p>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="fa fa-upload fa-fw"></i> LOG NEW ENTRY
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
+                            <div class="col-lg-4">
+								<div class="form-group">
+                                    <label>Division:</label>
+                                    <select class="form-control" id="select" name="division">
+                                        <option>Master</option>
+                                        <option>Challenger</option>
+                                        <option>Diamond I</option>
+                                        <option>Diamond II</option>
+                                        <option>Diamond III</option>
+                                        <option>Diamond IV</option>
+                                        <option>Diamond V</option>
+                                        <option>Platinum I</option>
+                                        <option>Platinum II</option>
+                                        <option>Platinum III</option>
+                                        <option>Platinum IV</option>
+                                        <option>Platinum V</option>
+                                        <option>Gold I</option>
+                                        <option>Gold II</option>
+                                        <option>Gold III</option>
+                                        <option>Gold IV</option>
+                                        <option>Gold V</option>
+                                        <option>Silver I</option>
+                                        <option>Silver II</option>
+                                        <option>Silver III</option>
+                                        <option>Silver IV</option>
+                                        <option>Silver V</option>
+                                        <option>Bronze I</option>
+                                        <option>Bronze II</option>
+                                        <option>Bronze III</option>
+                                        <option>Bronze IV</option>
+                                        <option>Bronze V</option>
+                                    </select>
+								</div>
+                                <div class="form-group">
+                                    <label>Current LP:</label>
+                                    <input class="form-control" name="lp">
+								</div>
+                                <div class="form-group">
+                                    <label>Champion:</label>
+                                    <input class="form-control" name="champion">
+								</div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Position:</label>
+                                    <select class="form-control" id="select" name="position">
+                                        <option>Top</option>
+                                        <option>Jungle</option>
+                                        <option>Mid</option>
+                                        <option>Marksman</option>
+                                        <option>Support</option>
+                                    </select>
+								</div>
+                            
+								<div class="form-group">
+									<label>KDA:</label>
+                                    <input class="form-control" name="kda">
+								</div>
+                                <div class="form-group">
+									<label>CS:</label>
+                                    <input class="form-control" name="cs">
+								</div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+									<label>Mistakes:</label>
+                                    <input class="form-control" name="mistakes">
+								</div>
+								<div class="form-group">
+									<label>Improve By:</label>
+                                    <input class="form-control" name="improvements">
+                                </div>
+                            <div class="form-group">
+							<button type="submit" align="center" style="margin-top:35px;" class="btn btn-info btn-lg btn-block">Add Entry</button></div>
+                            </div>
+							</form>
+
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+            </div>
+        
+        
+        
+        <br> <br> <br> <br> <br> <br> <br>
       <!-- Navbar
       ================================================== -->
       <div class="bs-docs-section clearfix">
@@ -1501,6 +1640,38 @@ if (isset($_GET['page'])) {
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/bootswatch.js"></script>
+    
+    <!-- Page-Level Plugin Scripts - Dashboard -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+      
+    <?php
+	$db = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+    $result = mysqli_query($db, "SELECT champion, count(*) FROM chrisluk GROUP BY champion ORDER BY count(*) DESC;");
+    if ($result == false) {
+        die();
+    }
+        
+	$errors = mysqli_fetch_all($result);
+	$datas = "";
+	foreach ($errors as &$val) {
+		$val[0] = basename($val[0]);
+		$datas .= "{ y: '$val[0]', a: $val[1]},";
+	}
+	?>
+	
+	<script>
+	Morris.Bar({
+		element: 'morris-file-bar',
+		data: [
+		<?php echo $datas; ?>
+			],
+		xkey: 'y',
+		ykeys: ['a'],
+		labels: ['Count']
+	});
+	</script>  
+    
   </body>
 </html>
 
