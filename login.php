@@ -55,8 +55,6 @@ require_once("genlatestmsg.php");
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="../bower_components/respond/dest/respond.min.js"></script>
     <![endif]-->
-    <script type='text/javascript' src='js/jquery.scrollTo.js'></script>
-	<script type='text/javascript' src='js/jquery.scrollTo.min.js'></script>
     <script src="bootstrap.min.js"/>
     <script>
 
