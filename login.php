@@ -79,7 +79,9 @@ require_once("genlatestmsg.php");
         
         
         
-        
+ <div class="container">
+    <div class="outer">
+        <div class="inner">       
         
     
         
@@ -119,7 +121,7 @@ require_once("genlatestmsg.php");
                     </div>
                     
                 </fieldset>
-                <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px;margin-top:-64px;" value="Login"><button style="width:100px;margin-top:-64px;margin-left:12px;" class="btn btn-md btn-success" style="color: #000000" href="#">Register</button>
+                <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px;margin-top:-64px;" value="Login"><form action="index.php?action=register"><button type="submit" style="width:100px;margin-top:-64px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#">Register</button></form>
                     
              </ul>
              </form>
@@ -142,20 +144,19 @@ require_once("genlatestmsg.php");
         -->
         
         
-    <div style="margin-top:175px;margin-left:auto;margin-right:auto;" class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div style="margin-top:135px;margin-left:auto;margin-right:auto;" class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <button style="color:black;" type="button" class="close" data-dismiss="modal">×</button>
                       <h4 class="modal-title">About NashorDB</h4>
                     </div>
                     <div class="modal-body">
-                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.<br><br>
+                      NashorDB is a database management tool that helps to aid those in hopes of climbing ELO. Instead of manually logging your data in a Google Docs spreadsheet, NashorDB offers a user-friendly interface to record your match history details while filling in additional comments that will remind you to focus on the elements of the game where you are lacking, and make less of those mistakes as you try and succeed through ranked solo.<br><br>
                       All images and artwork on this website are owned by Riot Games.
                     </div>
                     <div class="modal-footer">
-                      &copy; CHRISLUK &nbsp;&nbsp;
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <p align="left">&copy; CHRISLUK &nbsp;&nbsp;</p>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -164,12 +165,12 @@ require_once("genlatestmsg.php");
     <div class="container" style="margin-top:-70px;">
       <div class="page-header" id="banner">
         <div class="row">
-            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
               <div style="position: relative; left: 0; top: 0;">
-                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:630px;position: absolute; top:-182px; height:200px; weight:200px;overflow: hidden;" src="img/nashordb_logo2.png"/>
-                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-210px;height:550px; weight:550px;" src="img/fadedbaron.png"/>
-                  <button href="#table" style="margin-left:135px;width:200px;" class="btn btn-danger">SHOW ME</button>
+                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:635px;position: absolute; top:-202px; height:400px; weight:400px;overflow: hidden;" src="img/nashordb_logo2.png"/>
+                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-250px;height:550px; weight:550px;" src="img/fadedbaron.png"/>
+                  <button href="#table" style="margin-top:-70px;margin-left:133px;width:200px;" class="btn btn-danger">SHOW ME</button>
               </div>
        
             
@@ -1479,6 +1480,9 @@ require_once("genlatestmsg.php");
       </footer>
 
 
+    </div>
+    </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"/>

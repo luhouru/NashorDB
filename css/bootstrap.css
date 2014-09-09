@@ -7,6 +7,23 @@
  * Based on Bootstrap
 */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+.box { 
+    width: 500px; /* pick whatever width you want */
+}
+.bucket .outer {
+    width: 100%;
+    padding-top: 75%; /* defines aspect ratio */
+    position: relative;
+}
+.box .outer .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
