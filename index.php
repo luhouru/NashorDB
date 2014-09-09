@@ -13,6 +13,7 @@ require_once("add_teamcomp.php");
 require_once("genchecklist.php");
 require_once("gen_team_comp.php");
 require_once("genlatestmsg.php");
+require_once("register.php");
 
 //set login status and messages to default
 $loggedin = FALSE;
@@ -41,8 +42,9 @@ if (isset($_GET['action'])) {
             }
             break;
         case "register":
-            echo "REGISTERED?";
-            die();
+            register($_POST['inputName'], $_POST['inputUsername'], $_POST['inputPassword'], $_POST['inputEmail']);
+            echo "<h2>You have created an account with NashorDB. You may now login to use the dashboard.</h2>
+                   <a href=\"http://www.nashordb.net/login.php\">Click here</a> to go back";
             break;
 	}
 }

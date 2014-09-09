@@ -164,39 +164,40 @@ require_once("genlatestmsg.php");
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                       <h4 class="modal-title">Register Form</h4>
                     </div>
+                    <form class="form-horizontal" action="index.php?action=register" method="POST" role="form">
                     <div class="modal-body" style="height:250px;">
-                        <form class="form-horizontal" action="index.php?action=register" method="POST" role="form">
                             <fieldset>
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label">Name</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                <input type="text" class="form-control" name="inputName" placeholder="Name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputUsername" class="col-lg-2 control-label">Username</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                                <input type="text" class="form-control" name="inputUsername" placeholder="Username">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword" class="col-lg-2 control-label">Password</label>
                             <div class="col-lg-10">
-                                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                <input type="password" class="form-control" name="inputPassword" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                             <div class="col-lg-10">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                <input type="email" class="form-control" name="inputEmail" placeholder="Email">
                             </div>
                         </div>
                         </fieldset>
-                        </form>
+
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Register Now</button>
+                      <button type="submit" class="btn btn-default">Register Now</button>
                     </div>
+                    </form>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->    
