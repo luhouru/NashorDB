@@ -7,13 +7,13 @@ $warningtext = "";
 if (isset($_GET['warning'])) {
 	switch($_GET['warning']) {
 		case "badlogin":
-		$warningtext = "<div style=\"width:200px;\" class=\"alert alert-danger\">Invalid Credentials.</div>";
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:300px;\" class=\"alert alert-warning\">Invalid Credentials.</div>";
 		break;
 		case "unknown":
-		$warningtext = "<div style=\"width:200px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:300px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
 		break;
 		case "loggedout":
-		$warningtext = "<div style=\"width:200px;\" class=\"alert alert-warning\">You are logged out.</div>";
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:300px;\" class=\"alert alert-success\">You are logged out.</div>";
 		break;
 		default:
 		$warningtext = "";
@@ -114,10 +114,10 @@ require_once("genlatestmsg.php");
                     <input placeholder="Username" style="width:150px; margin-left:397px;" type="text" class="input-md form-control col-lg-4" name="username" value=""><input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-4" name="password" value="">
                     </div>
                 </fieldset>
-                <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px;margin-top:-64px;" value="Login"><form action="index.php?action=register"><button type="submit" style="width:100px;margin-top:-64px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#register-modal">Register</button></form>
-                    
-             </ul>
-             </form>
+                <input type="submit" name="sent" class="btn btn-primary btn-md" style="margin-right:111px;width:100px;margin-top:-64px;" value="Login"></ul></form>
+                <ul>
+                <button style="width:100px;margin-top:-129px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" data-toggle="modal" href="#register-modal">Register</button>
+                </ul>
         </div>
 
         </div>
@@ -137,7 +137,7 @@ require_once("genlatestmsg.php");
         -->
         
         
-    <div style="margin-top:135px;margin-left:auto;margin-right:auto;" class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div style="margin-top:85px;margin-left:auto;margin-right:auto;" class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -157,22 +157,22 @@ require_once("genlatestmsg.php");
         
         
         <!--START OF REGISTER MODAL-->
-        <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="margin-top:85px;margin-left:auto;margin-right:auto;" class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                       <h4 class="modal-title">Register Form</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="height:300px;">
                         <form action="index.php?action=register" method="POST" role="form">
                         <div class="form-group">
-                            <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label">Name</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" id="inputName" placeholder="Name">
                             </div>
                         </div>
+                        <div class="form-group">
                             <label for="inputUsername" class="col-lg-2 control-label">Username</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" id="inputUsername" placeholder="Username">
@@ -207,9 +207,9 @@ require_once("genlatestmsg.php");
             <br><br><br><br><br><br><br>
           <div style="margin-top:100px;" class="col-lg-12">
               <div style="position: relative; left: 0; top: 0;">
-                  <img href='#' onclick="location.reload(true);" align="left" style="margin-left:635px;position: absolute; top:-202px; height:400px; weight:400px;overflow: hidden;" src="img/nashordb_logo2.png"/>
-                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-250px;height:550px; weight:550px;" src="img/fadedbaron.png"/>
-                  <button href="#table" style="margin-top:-70px;margin-left:133px;width:200px;" class="btn btn-danger">SHOW ME</button>
+                  <img align="left" style="margin-left:635px;position: absolute; top:-257px; height:400px; weight:400px;overflow: hidden;" src="img/nashordb_logo2.png"/>
+                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-40px;top:-310px;height:550px; weight:550px;" src="img/fadedbaron.png"/>
+                  <button href="#table" style="margin-top:-170px;margin-left:133px;width:200px;" class="btn btn-danger">SHOW ME</button>
               </div>
        
             
@@ -1529,5 +1529,10 @@ require_once("genlatestmsg.php");
     <script src="js/bootstrap.js"/>
     <!--<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
     <script src="assets/js/bootswatch.js"></script>
+    <script>
+        setTimeout(function() {
+            $('#fade').fadeOut('fast');
+        }, 2500);    
+    </script>
   </body>
 </html>
