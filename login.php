@@ -7,14 +7,23 @@ $warningtext = "";
 if (isset($_GET['warning'])) {
 	switch($_GET['warning']) {
 		case "badlogin":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:300px;\" class=\"alert alert-warning\">Invalid Credentials.</div>";
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-warning\">Invalid Credentials.</div>";
+		break;
+        case "goodlogin":
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You have successfully logged in.</div>";
 		break;
 		case "unknown":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:300px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
 		break;
 		case "loggedout":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:300px;\" class=\"alert alert-success\">You are logged out.</div>";
+		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You are logged out.</div>";
 		break;
+        case "createsuccess":
+        $warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You have successfully created your account. Please login using your credentials.</div>";
+        break;
+        case "failcreate":
+        $warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">The username you provided already exists.</div>";
+        break;
 		default:
 		$warningtext = "";
 		break;

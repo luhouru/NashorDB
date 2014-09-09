@@ -42,10 +42,22 @@ if (isset($_GET['action'])) {
             }
             break;
         case "register":
-            register($_POST['inputName'], $_POST['inputUsername'], $_POST['inputPassword'], $_POST['inputEmail']);
-            echo "<h2>You have created an account with NashorDB. You may now login to use the dashboard.</h2>
-                   <a href=\"http://www.nashordb.net/login.php\">Click here</a> to go back";
+            $pass_or_fail = register($_POST['inputName'], $_POST['inputUsername'], $_POST['inputPassword'], $_POST['inputEmail']);
+            if ($pass_or_fail == false) {
+                // account could not be created because username already exists
+                $warning = "failcreate";
+                header('Location: login.php?warning='.$warning);
+                die();
+            } else {
+                // then account was successfully created and we should post a banner.
+                $warning = "successcreate";
+                header('Location: login.php?warning='.$warning);
+                die();
+            }
             break;
+        default:
+            header('Location: login.php');
+        break;
 	}
 }
 
@@ -88,7 +100,6 @@ if (isset($_GET['action'])) {
 		header('Location: login.php?warning=loggedout');
 		die();
 	break;
-    
     
 	case "add_teamcomp":
 	if (!isset($_POST['top'])) {
@@ -319,7 +330,6 @@ if (isset($_GET['page'])) {
         </div>
       </div>
     </div>
-
 
     <div class="container">
       <div class="page-header" id="banner">
