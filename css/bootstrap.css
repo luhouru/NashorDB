@@ -911,7 +911,7 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 16px;
   line-height: 1.42857143;
-  color: #FFFFFF;
+  color: #000000;
   background-color: #ffffff;
 }
 input,
@@ -2985,8 +2985,8 @@ fieldset[disabled] .btn-warning.active {
 }
 .btn-danger {
   color: #ffffff;
-  background-color: #d9534f;
-  border-color: #d9534f;
+  background-color: #660EE9;
+  border-color: #21053E;
 }
 .btn-danger:hover,
 .btn-danger:focus,
@@ -2994,8 +2994,8 @@ fieldset[disabled] .btn-warning.active {
 .btn-danger.active,
 .open > .dropdown-toggle.btn-danger {
   color: #ffffff;
-  background-color: #c9302c;
-  border-color: #c12e2a;
+  background-color: #8F3291;
+  border-color: #60307C;
 }
 .btn-danger:active,
 .btn-danger.active,
@@ -4721,7 +4721,7 @@ a.thumbnail.active {
   line-height: 22px;
   color: #ffffff;
   text-align: center;
-  background-color: #4582ec;
+  background-color: #8D0DC1;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;

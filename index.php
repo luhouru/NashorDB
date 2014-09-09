@@ -24,20 +24,26 @@ $alertset = FALSE;
 //check to see if they're logging in
 //note: load nothing until login is confirmed
 if (isset($_GET['action'])) {
-	if ($_GET['action'] == "login") {
-		if (checklogin($_POST['username'],$_POST['password'])) {
-		$loggedin = TRUE;
-		$warning = "goodlogin";
-		if (isset($_POST['remember'])) {
-		$plustime = time();
-		} else {
-		$plustime = 3600;
-		}
-		setcookie("loggedin", TRUE, time()+$plustime);
-		setcookie("username", $_POST['username'], time()+$plustime);
-		} else {
-		$warning = "badlogin&username=".$_POST['username'];
-		}
+    switch($_GET['action']) {
+	    case "login":
+            if (checklogin($_POST['username'],$_POST['password'])) {
+            $loggedin = TRUE;
+            $warning = "goodlogin";
+            if (isset($_POST['remember'])) {
+            $plustime = time();
+            } else {
+            $plustime = 3600;
+            }
+            setcookie("loggedin", TRUE, time()+$plustime);
+            setcookie("username", $_POST['username'], time()+$plustime);
+            } else {
+            $warning = "badlogin&username=".$_POST['username'];
+            }
+            break;
+        case "register":
+            echo "REGISTERED?";
+            die();
+            break;
 	}
 }
 
@@ -242,9 +248,16 @@ if (isset($_GET['page'])) {
      })();
 
     </script>
+    <style>
+        ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+        ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+        ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+            color: transparent;
+        }
+      </style>  
   </head>
   <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-relative-top" style="background-color:transparent;">
       <div class="container">
         <div class="navbar-header">
           <a href="../" class="navbar-brand">Bootswatch</a>
@@ -298,8 +311,7 @@ if (isset($_GET['page'])) {
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
-            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+            <li><form action="index.php?action=logout" method="POST" role="form"><button style="margin-top:12px;" class="btn btn-danger btn-md" type="submit">LOGOUT</button></form></li>
           </ul>
 
         </div>
@@ -308,21 +320,258 @@ if (isset($_GET['page'])) {
 
 
     <div class="container">
-
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
-            <h1>Readable</h1>
-            <p class="lead">Optimized for legibility</p>
+            <h1 style="color:white;">MY DASHBOARD</h1>
+            <p style="color:white;" class="lead">For all your League of Legends needs!</p>
           </div>
           <div class="col-lg-4 col-md-5 col-sm-6">
             <div class="sponsor">
-                  <a href="http://gridgum.com/themes/category/bootstrap-themes/?utm_source=Bootswatch&utm_medium=250ad&utm_campaign=Bootswatch%20Campaign" target="_blank" onclick="_gaq.push(['_trackEvent', 'banner', 'click', 'gridgum']);"><img src="../assets/img/gridgum.png" alt="Gridgum" onload="_gaq.push(['_trackEvent', 'banner', 'impression', 'gridgum']);"></a>
             </div>
           </div>
         </div>
       </div>
+        
+        <!--MOST PLAYED CHAMPIONS MORRIS CHART-->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- /.panel -->
+                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Most Played Champions
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div style="height:325px;" id="morris-file-bar"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        
+        <p style="color:white">
+                    <?php
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                        // find the last entries LP
+                        $username = $_COOKIE['username'];
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
 
+                        $lp_result = mysqli_query($connection, $lp_query);
+
+                        // fetch query results
+                        $lp_row = mysqli_fetch_assoc($lp_result);
+                        $lp_old = $lp_row['lp'];
+                        $div_query = "SELECT `division` FROM `".$username."` ORDER BY entry_id DESC limit 1";
+
+			// fetch division query results
+			$div_result = mysqli_query($connection, $div_query);
+			$div_row = mysqli_fetch_assoc($div_result);
+            if($div_row == false) {
+                die();
+            }
+			$current_div = $div_row['division'];
+			$next_div = "";
+			switch ($current_div) {
+			    case "Bronze V":
+			        $next_div = "Bronze IV";
+			        break;
+			    case "Bronze IV":
+				$next_div = "Bronze III";
+				break;
+			    case "Bronze III":
+				$next_div = "Bronze II";
+				break;
+			    case "Bronze II":
+				$next_div = "Bronze I";
+				break;
+			    case "Bronze I":
+				$next_div = "Silver V";
+				break;
+			    case "Silver V":
+                                $next_div = "Silver IV";
+                                break;
+                            case "Silver IV":
+                                $next_div = "Silver III";
+                                break;
+                            case "Silver III":
+                                $next_div = "Silver II";
+                                break;
+                            case "Silver II":
+                                $next_div = "Silver I";
+                                break;
+                            case "Silver I":
+                                $next_div = "Gold V";
+ 			    case "Gold V":
+                                $next_div = "Gold IV";
+                                break;
+                            case "Gold IV":
+                                $next_div = "Gold III";
+                                break;
+                            case "Gold III":
+                                $next_div = "Gold II";
+                                break;
+                            case "Gold II":
+                                $next_div = "Gold I";
+                                break;
+                            case "Gold I":
+                                $next_div = "Platinum V";
+ 			    case "Platinum V":
+                                $next_div = "Platinum IV";
+                                break;
+                            case "Platinum IV":
+                                $next_div = "Platinum III";
+                                break;
+                            case "Platinum III":
+                                $next_div = "Platinum II";
+                                break;
+                            case "Platinum II":
+                                $next_div = "Platinum I";
+                                break;
+                            case "Platinum I":
+                                $next_div = "Diamond V";
+	                        break;
+			}
+
+                        if ($lp_old == 100) {
+                            echo "In Series! Next Division: ".$next_div;
+                        } else {
+			    echo "Next Division: ".$next_div;
+			}
+                    ?></p>
+            <div class="progress progress-striped active">
+                <div class="progress-bar"
+                     <?php
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                        /*$db_name = 'stats';
+                        mysql_select_db($db_name, $connection);*/
+ 	
+                        // find the last entries LP
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
+                        $lp_result = mysqli_query($connection, $lp_query);
+                        if ($lp_result == false) {
+                            die();
+                        }
+                        // fetch query results
+	                $lp_row = mysqli_fetch_assoc($lp_result);
+                        $lp_old = $lp_row['lp'];
+                        echo "style='width: ".$lp_old."%'";
+                    ?>>
+                </div>
+            </div>    
+        
+        <!--THIS IS WHERE THE PERFORMANCE TABLE WILL BE-->
+        <div class="row">
+                <div class="col-lg-12">
+                    <!-- /.panel -->
+                    <?php 
+					   echo tablegen(0,0); 
+					?>
+                </div>
+        </div>
+        
+        
+            <div class="row">
+                <div class="page-header">
+                    <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
+                    <p style="color:white;margin-left:3em;">Use this form to log your post-game data.</p>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="fa fa-upload fa-fw"></i> LOG NEW ENTRY
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
+                            <div class="col-lg-4">
+								<div class="form-group">
+                                    <label>Division:</label>
+                                    <select class="form-control" id="select" name="division">
+                                        <option>Master</option>
+                                        <option>Challenger</option>
+                                        <option>Diamond I</option>
+                                        <option>Diamond II</option>
+                                        <option>Diamond III</option>
+                                        <option>Diamond IV</option>
+                                        <option>Diamond V</option>
+                                        <option>Platinum I</option>
+                                        <option>Platinum II</option>
+                                        <option>Platinum III</option>
+                                        <option>Platinum IV</option>
+                                        <option>Platinum V</option>
+                                        <option>Gold I</option>
+                                        <option>Gold II</option>
+                                        <option>Gold III</option>
+                                        <option>Gold IV</option>
+                                        <option>Gold V</option>
+                                        <option>Silver I</option>
+                                        <option>Silver II</option>
+                                        <option>Silver III</option>
+                                        <option>Silver IV</option>
+                                        <option>Silver V</option>
+                                        <option>Bronze I</option>
+                                        <option>Bronze II</option>
+                                        <option>Bronze III</option>
+                                        <option>Bronze IV</option>
+                                        <option>Bronze V</option>
+                                    </select>
+								</div>
+                                <div class="form-group">
+                                    <label>Current LP:</label>
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp">
+								</div>
+                                <div class="form-group">
+                                    <label>Champion:</label>
+                                    <input class="form-control" name="champion">
+								</div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Position:</label>
+                                    <select class="form-control" id="select" name="position">
+                                        <option>Top</option>
+                                        <option>Jungle</option>
+                                        <option>Mid</option>
+                                        <option>Marksman</option>
+                                        <option>Support</option>
+                                    </select>
+								</div>
+                            
+								<div class="form-group">
+									<label>KDA:</label>
+                                    <input placeholder="0/0/0" class="form-control" name="kda">
+								</div>
+                                <div class="form-group">
+									<label>CS:</label>
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs">
+								</div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+									<label>Mistakes:</label>
+                                    <input class="form-control" name="mistakes">
+								</div>
+								<div class="form-group">
+									<label>Improve By:</label>
+                                    <input class="form-control" name="improvements">
+                                </div>
+                            <div class="form-group">
+							<button type="submit" align="center" style="margin-top:35px;" class="btn btn-info btn-lg btn-block">Add Entry</button></div>
+                            </div>
+							</form>
+
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+            </div>
+        </div>
+        
+        
+        <br> <br> <br> <br> <br> <br> <br>
       <!-- Navbar
       ================================================== -->
       <div class="bs-docs-section clearfix">
@@ -1495,6 +1744,38 @@ if (isset($_GET['page'])) {
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/bootswatch.js"></script>
+    
+    <!-- Page-Level Plugin Scripts - Dashboard -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+      
+    <?php
+	$db = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+    $result = mysqli_query($db, "SELECT champion, count(*) FROM chrisluk GROUP BY champion ORDER BY count(*) DESC;");
+    if ($result == false) {
+        die();
+    }
+        
+	$errors = mysqli_fetch_all($result);
+	$datas = "";
+	foreach ($errors as &$val) {
+		$val[0] = basename($val[0]);
+		$datas .= "{ y: '$val[0]', a: $val[1]},";
+	}
+	?>
+	
+	<script>
+	Morris.Bar({
+		element: 'morris-file-bar',
+		data: [
+		<?php echo $datas; ?>
+			],
+		xkey: 'y',
+		ykeys: ['a'],
+		labels: ['Count']
+	});
+	</script>  
+    
   </body>
 </html>
 

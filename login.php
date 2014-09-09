@@ -7,13 +7,13 @@ $warningtext = "";
 if (isset($_GET['warning'])) {
 	switch($_GET['warning']) {
 		case "badlogin":
-		$warningtext = "<div class=\"alert alert-danger text-center\"><strong>Invalid Credentials.</strong></div>";
+		$warningtext = "<div style=\"width:200px;\" class=\"alert alert-danger\">Invalid Credentials.</div>";
 		break;
 		case "unknown":
-		$warningtext = "<div class=\"alert alert-danger text-center\"><strong>An error has occurred. You have been logged out.</strong></div>";
+		$warningtext = "<div style=\"width:200px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
 		break;
 		case "loggedout":
-		$warningtext = "<div style=\"width:50%;margin-left: auto;margin-right: auto;\" class=\"alert alert-success text-center\"><strong>You are logged out.</strong></div>";
+		$warningtext = "<div style=\"width:200px;\" class=\"alert alert-warning\">You are logged out.</div>";
 		break;
 		default:
 		$warningtext = "";
@@ -74,6 +74,7 @@ require_once("genlatestmsg.php");
   </head>
     
     <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
+<<<<<<< HEAD
     
         
         
@@ -84,6 +85,8 @@ require_once("genlatestmsg.php");
         <div class="inner">       
         
     
+=======
+>>>>>>> 8f277f79a53b3a58caa30b026e4dbd73518c53e4
         
         
     <div class="navbar navbar-default nav-fixed-top" style="margin-top:-30px;background-color: transparent">
@@ -96,7 +99,7 @@ require_once("genlatestmsg.php");
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav" >
+          <ul class="nav navbar-nav">
             <li>
               <button style="background-color: #FFFFFF;border: 1px solid #bebebe;" class="btn btn-default" data-toggle="modal" href="#about-modal">ABOUT</button>
               <!-- Modal -->
@@ -114,14 +117,13 @@ require_once("genlatestmsg.php");
           </ul>
         <div align="right">
             <form action="index.php?action=login" method="POST" role="form">
-            <ul>
+                <ul>
                 <fieldset>
                     <div class="form-group">
                     <input placeholder="Username" style="width:150px; margin-left:397px;" type="text" class="input-md form-control col-lg-4" name="username" value=""><input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-4" name="password" value="">
                     </div>
-                    
                 </fieldset>
-                <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px;margin-top:-64px;" value="Login"><form action="index.php?action=register"><button type="submit" style="width:100px;margin-top:-64px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#">Register</button></form>
+                <input type="submit" name="sent" class="btn btn-primary btn-md" style="width:100px;margin-top:-64px;" value="Login"><form action="index.php?action=register"><button type="submit" style="width:100px;margin-top:-64px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" href="#register-modal">Register</button></form>
                     
              </ul>
              </form>
@@ -160,7 +162,53 @@ require_once("genlatestmsg.php");
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+        
+        
+        <!--START OF REGISTER MODAL-->
+        <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title">Register Form</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="index.php?action=register" method="POST" role="form">
+                        <div class="form-group">
+                            <div class="form-group">
+                            <label for="inputName" class="col-lg-2 control-label">Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="inputName" placeholder="Name">
+                            </div>
+                        </div>
+                            <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                            <div class="col-lg-10">
+                                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            </div>
+                        </div>
+                        
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Register Now</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->    
+        <!-- END OF REGISTER MODAL -->
         
     <div class="container" style="margin-top:-70px;">
       <div class="page-header" id="banner">
@@ -195,8 +243,8 @@ require_once("genlatestmsg.php");
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="col-lg-4">
                             <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
+                            <div class="col-lg-4">
 								<div class="form-group">
                                     <label>Division:</label>
                                     <select class="form-control" id="select" name="division">
@@ -231,11 +279,11 @@ require_once("genlatestmsg.php");
 								</div>
                                 <div class="form-group">
                                     <label>Current LP:</label>
-                                    <input class="form-control" name="lp">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp" disabled>
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
-                                    <input class="form-control" name="champion">
+                                    <input class="form-control" name="champion" disabled>
 								</div>
                             </div>
                             <div class="col-lg-4">
@@ -252,21 +300,21 @@ require_once("genlatestmsg.php");
                             
 								<div class="form-group">
 									<label>KDA:</label>
-                                    <input class="form-control" name="kda">
+                                    <input placeholder="0/0/0" class="form-control" name="kda" disabled>
 								</div>
                                 <div class="form-group">
 									<label>CS:</label>
-                                    <input class="form-control" name="cs">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs" disabled>
 								</div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
 									<label>Mistakes:</label>
-                                    <input class="form-control" name="mistakes">
+                                    <input class="form-control" name="mistakes" disabled>
 								</div>
 								<div class="form-group">
 									<label>Improve By:</label>
-                                    <input class="form-control" name="improvements">
+                                    <input class="form-control" name="improvements" disabled>
                                 </div>
                             <div class="form-group">
 							<button type="submit" align="center" style="margin-top:35px;" class="disabled btn btn-info btn-lg btn-block">Add Entry</button></div>
@@ -279,6 +327,7 @@ require_once("genlatestmsg.php");
                 </div>
                 <!-- /.col-lg-8 -->
             </div>
+        </div>
 
 
         <br><br><br><br><br><br>
