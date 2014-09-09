@@ -74,20 +74,11 @@ require_once("genlatestmsg.php");
   </head>
     
     <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
-<<<<<<< HEAD
-    
-        
-        
         
         
  <div class="container">
     <div class="outer">
         <div class="inner">       
-        
-    
-=======
->>>>>>> 8f277f79a53b3a58caa30b026e4dbd73518c53e4
-        
         
     <div class="navbar navbar-default nav-fixed-top" style="margin-top:-30px;background-color: transparent">
       <div class="container">
