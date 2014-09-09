@@ -164,8 +164,9 @@ require_once("genlatestmsg.php");
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                       <h4 class="modal-title">Register Form</h4>
                     </div>
-                    <div class="modal-body" style="height:300px;">
-                        <form action="index.php?action=register" method="POST" role="form">
+                    <div class="modal-body" style="height:250px;">
+                        <form class="form-horizontal" action="index.php?action=register" method="POST" role="form">
+                            <fieldset>
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label">Name</label>
                             <div class="col-lg-10">
@@ -190,7 +191,7 @@ require_once("genlatestmsg.php");
                                 <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                             </div>
                         </div>
-                        
+                        </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
