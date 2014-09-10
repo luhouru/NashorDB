@@ -70,7 +70,7 @@ $next--;
 $forstyle = "btn-primary";
 }
 
-$result = '<div style="padding-bottom:3px;" class="panel panel-success">
+$result = '<div style="padding-bottom:3px;" class="panel panel-danger">
                         <div class="panel-heading">
                             <i class="fa fa-table fa-fw"></i> Performance Chart
                         </div>

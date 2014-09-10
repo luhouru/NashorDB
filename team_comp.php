@@ -1,14 +1,14 @@
             <div class="row">
                 <!-- /.col-lg-12 -->
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <!-- /.panel -->
                     <?php 
 					   echo gen_team_comp(0,0); 
 					?>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <!-- /.panel -->
-                     <div class="panel panel-primary">
+                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <i class="fa fa-edit fa-fw"></i> Add New Team Composition
                         </div>
@@ -35,7 +35,7 @@
 									<label>Support:</label>
                                     <input class="form-control" name="support">
 								</div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Add Team Comp</button>
+							<button type="submit" class="btn btn-success btn-lg btn-block">Add Team Comp</button>
 							</form>
                         </div>
                         <!-- /.panel-body -->

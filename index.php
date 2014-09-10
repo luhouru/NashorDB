@@ -1,4 +1,5 @@
 <?php
+
 //set timezone for east coast
 date_default_timezone_set('America/New_York');
 
@@ -20,25 +21,46 @@ $action = "home";
 $warning = "redirect";
 $alertset = FALSE;
 
+
 //check to see if they're logging in
 //note: load nothing until login is confirmed
 if (isset($_GET['action'])) {
-	if ($_GET['action'] == "login") {
-		if (checklogin($_POST['username'],$_POST['password'])) {
-		$loggedin = TRUE;
-		$warning = "goodlogin";
-		if (isset($_POST['remember'])) {
-		$plustime = time();
-		} else {
-		$plustime = 3600;
-		}
-		setcookie("loggedin", TRUE, time()+$plustime);
-		setcookie("username", $_POST['username'], time()+$plustime);
-		} else {
-		$warning = "badlogin&username=".$_POST['username'];
-		}
+    switch($_GET['action']) {
+	    case "login":
+            if (checklogin($_POST['username'],$_POST['password'])) {
+            $loggedin = TRUE;
+            $warning = "goodlogin";
+            if (isset($_POST['remember'])) {
+            $plustime = time();
+            } else {
+            $plustime = 3600;
+            }
+            setcookie("loggedin", TRUE, time()+$plustime);
+            setcookie("username", $_POST['username'], time()+$plustime);
+            } else {
+            $warning = "badlogin&username=".$_POST['username'];
+            }
+            break;
+        case "register":
+            $pass_or_fail = register($_POST['inputName'], $_POST['inputUsername'], $_POST['inputPassword'], $_POST['inputEmail']);
+            if ($pass_or_fail == false) {
+                // account could not be created because username already exists
+                $warning = "failcreate";
+                header('Location: login.php?warning='.$warning);
+                die();
+            } else {
+                // then account was successfully created and we should post a banner.
+                $warning = "successcreate";
+                header('Location: login.php?warning='.$warning);
+                die();
+            }
+            break;
+        default:
+            header('Location: login.php');
+        break;
 	}
 }
+
 
 //check to see if they remain logged in
 if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
@@ -49,7 +71,7 @@ if(isset($_COOKIE["loggedin"]) && $_COOKIE['loggedin'] == TRUE) {
 //if they're not logged in, send them back to the login page
 //sorry!
 if (!$loggedin) {
-header('Location: http://www.nashordb.net/login.php?warning='.$warning);
+header('Location: login.php?warning='.$warning);
 die();
 }
 
@@ -75,10 +97,9 @@ if (isset($_GET['action'])) {
         unset($_COOKIE['username']);
         setcookie("loggedin", null, -1);
         setcookie("username", null, -1);
-		header('Location: http://www.nashordb.net/login.php?warning=loggedout');
+		header('Location: login.php?warning=loggedout');
 		die();
 	break;
-    
     
 	case "add_teamcomp":
 	if (!isset($_POST['top'])) {
@@ -98,7 +119,7 @@ if (isset($_GET['action'])) {
 	}
         
     $tc = add_teamcomp($_POST['top'],$_POST['mid'],$_POST['jungle'],$_POST['adc'],$_POST['support']);
-	$tcset = TRUE;
+	$tcset = true;
 	break;
         
     case "add_roster":
@@ -119,7 +140,7 @@ if (isset($_GET['action'])) {
 	}
     
     $roster = add_roster($_POST['top'],$_POST['mid'],$_POST['jungle'],$_POST['adc'],$_POST['support']);
-	$rosterset = TRUE;
+	$rosterset = true;
 	break;
 
 	case "add_entry":
@@ -162,7 +183,7 @@ if (isset($_GET['action'])) {
 
 
 //grab the user details
-$db = mysqli_connect("localhost", "syno", "fiend", "users");
+$db = mysqli_connect("localhost", "root", "supfoo2971", "users");
 $query = "SELECT * FROM users where username='".$_COOKIE['username']."'";
 $result = mysqli_query($db, $query);
 $userdetails = mysqli_fetch_assoc($result);
@@ -213,6 +234,7 @@ if (isset($_GET['page'])) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 
@@ -224,6 +246,7 @@ if (isset($_GET['page'])) {
     <title>NashorDB: A Database Management Dashboard</title>
 
     <!-- Core CSS - Include with every page -->
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
@@ -258,11 +281,9 @@ if (isset($_GET['page'])) {
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="index.php?page=admin"><i class="fa fa-gear fa-fw"></i> Admin Panel</a>
-                        </li>
                         <li><a href="index.php?action=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -270,6 +291,7 @@ if (isset($_GET['page'])) {
                 </li>
                 <!-- /.dropdown -->
             </ul>
+        
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default navbar-static-side" role="navigation">
@@ -347,12 +369,12 @@ if (isset($_GET['page'])) {
                 } else { $tcmessage = "not null"; }	
 				if ($rostermessage != NULL) {
 					echo "<div class=\"alert alert-success\"><b><center>New Roster Added!</b></center></div>";
-				} else if ($rosterset) {
+				} else if (isset($rosterset)) {
 					echo "<div class=\"alert alert-danger\"><b><center>No roster added. Please input a valid roster.</center></b></div>";
 				}  
                 if ($tcmessage != NULL) {
 					echo "<div class=\"alert alert-success\"><b><center>New Team Comp Added!</b></center></div>";
-				} else if ($tcset) {
+				} else if (isset($tcset)) {
 					echo "<div class=\"alert alert-danger\"><b><center>No comp added. Please input a valid team composition.</center></b></div>";
 				}
 
@@ -360,36 +382,36 @@ if (isset($_GET['page'])) {
 				switch($_GET['page']) {
 
 				case "stats":
-				require_once("/var/www/html/nashor/stats.php");
+				require_once("stats.php");
 				break;
                     
                 case "comp":
-                require_once("/var/www/html/nashor/team_comp.php");
+                require_once("team_comp.php");
                 break;
                     
                 case "roster":
-				require_once("/var/www/html/nashor/roster.php");
+				require_once("roster.php");
 				break;
 
 				case "about":
-				require_once("/var/www/html/nashor/about.php");
+				require_once("about.php");
 				break;
 
 				case "soundcloud":
-				require_once("/var/www/html/nashor/soundcloud.php");
+				require_once("soundcloud.php");
 				break;
                     
                 case "bulletin":
-				require_once("/var/www/html/nashor/bulletin.php");
+				require_once("bulletin.php");
 				break;
 
 				default:
-				require_once("/var/www/html/nashor/dash.php");
+				require_once("dash.php");
 				break;
 				}
 				} else {
 				//default page
-				require_once("/var/www/html/nashor/dash.php");
+				require_once("dash.php");
 				}
 
 			?>
@@ -402,6 +424,7 @@ if (isset($_GET['page'])) {
 
     <!-- Core Scripts - Include with every page -->
     <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
@@ -508,6 +531,8 @@ if (isset($_GET['page'])) {
 			],
 		xkey: 'y',
 		ykeys: ['a'],
+        ymax: 15,
+        allowDecimals: false,
 		labels: ['Count']
 	});
 	</script>

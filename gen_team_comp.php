@@ -18,12 +18,12 @@ $backstyle = "btn-primary";
 }
 
 $tbody = '';
-$connection = mysql_connect("localhost", "syno", "fiend");
-$db_name = 'stats';
-mysql_select_db($db_name, $connection);
+$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+/*$db_name = 'stats';
+mysql_select_db($db_name, $connection);*/
 $query = "SELECT * FROM teamcomps;";
 
-$result = mysql_query($query);
+$result = mysqli_query($connection, $query);
 
 $count = 0;
 $startpt = $pagenum * 15;
@@ -34,12 +34,12 @@ if ($result === false) {
 }
 
 // Display table
-while ($table = mysql_fetch_row($result)) {
-	mysql_data_seek($result, 0);
-	if (mysql_num_rows($result)) {
+while ($table = mysqli_fetch_row($result)) {
+	mysqli_data_seek($result, 0);
+	if (mysqli_num_rows($result)) {
 		$inc = 0;
-		mysql_data_seek($result, 0);
-		while($row = mysql_fetch_assoc($result)) {
+		mysqli_data_seek($result, 0);
+		while($row = mysqli_fetch_assoc($result)) {
 			//if ($inc >= $startpt && $inc <= $endpt) {
                 $tbody .= "<tr>\n";
 				foreach(array_slice($row,1) as $key=>$value) {    
@@ -62,9 +62,9 @@ $next--;
 $forstyle = "btn-primary";
 }
 
-$result = '<div class="panel panel-primary">
+$result = '<div class="panel panel-success">
                         <div class="panel-heading">
-                            <i class="fa fa-table fa-fw"></i> Team Compositions
+                            <i class="fa fa-table fa-fw"></i> Team Comps
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

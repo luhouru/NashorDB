@@ -3,9 +3,9 @@
 function add_entry($division, $lp, $champion, $position, $kda, $cs, $mistakes, $improvements) {
 
 	// Connecting to database
-	$connection = mysql_connect("localhost", "syno", "fiend");
-    $db_name = 'stats';
-    mysql_select_db($db_name, $connection);
+	$connection = mysql_connect("localhost", "root", "supfoo2971", "stats");
+    /*$db_name = 'stats';
+    mysql_select_db($db_name, $connection);*/
  	
 	/*// INSERT INTO TABLE VALUES FROM FORM
 	$division = $_POST['division'];

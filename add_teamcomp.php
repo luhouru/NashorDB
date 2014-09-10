@@ -3,9 +3,9 @@
 function add_teamcomp($top, $mid, $jungle, $adc, $support) {
 
 	// Connecting to database
-	$connection = mysql_connect("localhost", "syno", "fiend");
-    $db_name = 'stats';
-    mysql_select_db($db_name, $connection);
+	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+    /*$db_name = 'stats';
+    mysql_select_db($db_name, $connection);*/
     
     // insert the new form inputs into the database
     if ($_COOKIE['username'] == "bot") {
@@ -15,8 +15,8 @@ function add_teamcomp($top, $mid, $jungle, $adc, $support) {
     } else {
         $insert_query = "INSERT INTO teamcomps SET top='".$top."', mid='".$mid."', jungle='".$jungle."', adc='".$adc."', support='".$support."';";
     }
-	if (!mysql_query($insert_query)) {
-        die("Error: " . mysql_error());
+	if (!mysqli_query($connection, $insert_query)) {
+        die("Error: " . mysqli_error());
     }
 
 $array = array($top, $mid, $jungle, $adc, $support);

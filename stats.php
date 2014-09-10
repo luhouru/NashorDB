@@ -1,49 +1,21 @@
             <p style="color:black">
                     <?php
-                    	$connection = mysql_connect("localhost", "syno", "fiend");
-                        $db_name = 'stats';
-                        mysql_select_db($db_name, $connection);
-
-                        // find the last entries LP
-			switch ($_COOKIE['username']) {
-    		   	    case "chris.luk":
-        			$lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-        			break;
-    			    case "googz":
-        			$lp_query = "SELECT `lp` FROM stats_googz ORDER BY entry_id DESC limit 1";
-        			break;
-    		    	    case "chombol":
-        			$lp_query = "SELECT `lp` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-        			break;
-    		 	    default:
-        			$lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-        			break;
-			}
-
-			$lp_result = mysql_query($lp_query);
-    
-                        // fetch query results
-	                $lp_row = mysql_fetch_assoc($lp_result);
-                        $lp_old = $lp_row['lp'];
-			
-			switch ($_COOKIE['username']) {
-                            case "chris.luk":
-                                $div_query = "SELECT `division` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "googz":
-                                $div_query = "SELECT `division` FROM stats_googz ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "chombol":
-                                $div_query = "SELECT `division` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-                                break;
-                            default:
-                                $div_query = "SELECT `division` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                        }	
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                        /*$db_name = 'stats';
+                        mysql_select_db($db_name, $connection);*/
+                        $username = $_COOKIE['username'];
+            // find the last entries LP
+			$lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
+			$lp_result = mysqli_query($connection, $lp_query);
+            
+            // fetch query results
+	        $lp_row = mysqli_fetch_assoc($lp_result);
+            $lp_old = $lp_row['lp'];
+            $div_query = "SELECT `division` FROM ".$username." ORDER BY entry_id DESC limit 1";
 
 			// fetch division query results
-			$div_result = mysql_query($div_query);
-			$div_row = mysql_fetch_assoc($div_result);
+			$div_result = mysqli_query($connection, $div_query);
+			$div_row = mysqli_fetch_assoc($div_result);
 			$current_div = $div_row['division'];
 			$next_div = "";
 			switch ($current_div) {
@@ -116,28 +88,15 @@
             <div class="progress progress-striped active">
                 <div class="progress-bar"
                      <?php
-                    	$connection = mysql_connect("localhost", "syno", "fiend");
-                        $db_name = 'stats';
-                        mysql_select_db($db_name, $connection);
- 	
+                    	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                        /*$db_name = 'stats';
+                        mysql_select_db($db_name, $connection);*/
+ 	                    $username = $_COOKIE['username'];
                         // find the last entries LP
-                        switch ($_COOKIE['username']) {
-                            case "chris.luk":
-                                $lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "googz":
-                                $lp_query = "SELECT `lp` FROM stats_googz ORDER BY entry_id DESC limit 1";
-                                break;
-                            case "chombol":
-                                $lp_query = "SELECT `lp` FROM stats_chombol ORDER BY entry_id DESC limit 1";
-                                break;
-                            default:
-                                $lp_query = "SELECT `lp` FROM stats_luk ORDER BY entry_id DESC limit 1";
-                                break;
-                        }
-                        $lp_result = mysql_query($lp_query);
+                        $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
+                        $lp_result = mysqli_query($connection, $lp_query);
                         // fetch query results
-	                $lp_row = mysql_fetch_assoc($lp_result);
+	                $lp_row = mysqli_fetch_assoc($lp_result);
                         $lp_old = $lp_row['lp'];
                         echo "style='width: ".$lp_old."%'";
                     ?>>
@@ -150,14 +109,15 @@
 					   echo tablegen(0,0); 
 					?>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-primary">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <i class="fa fa-upload fa-fw"></i> Add New Entry
+                            <i class="fa fa-upload fa-fw"></i> Add Match Details
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
+                            <div class="col-lg-4">
 								<div class="form-group">
                                     <label>Division:</label>
                                     <select class="form-control" id="select" name="division">
@@ -191,13 +151,15 @@
                                     </select>
 								</div>
                                 <div class="form-group">
-                                    <label>LP:</label>
-                                    <input class="form-control" name="lp">
+                                    <label>Current LP:</label>
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp">
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
                                     <input class="form-control" name="champion">
 								</div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>Position:</label>
                                     <select class="form-control" id="select" name="position">
@@ -208,14 +170,17 @@
                                         <option>Support</option>
                                     </select>
 								</div>
+                            
 								<div class="form-group">
 									<label>KDA:</label>
-                                    <input class="form-control" name="kda">
+                                    <input placeholder="0/0/0" class="form-control" name="kda">
 								</div>
                                 <div class="form-group">
 									<label>CS:</label>
-                                    <input class="form-control" name="cs">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs">
 								</div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
 									<label>Mistakes:</label>
                                     <input class="form-control" name="mistakes">
@@ -224,9 +189,11 @@
 									<label>Improve By:</label>
                                     <input class="form-control" name="improvements">
                                 </div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Add Entry</button>
+                            <div class="form-group">
+							<button type="submit" align="center" style="margin-top:35px;" class="btn btn-success btn-lg btn-block">Add Entry</button></div>
+                            </div>
 							</form>
-						</div>
+
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->

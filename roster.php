@@ -1,11 +1,11 @@
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <?php echo gen_roster(0,0); ?>
                 </div>
                 <!-- /.col-lg-12 -->
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <!-- /.panel -->
-                     <div class="panel panel-primary">
+                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <i class="fa fa-edit fa-fw"></i> Add New Roster
                         </div>
@@ -32,7 +32,7 @@
 									<label>Support:</label>
                                     <input class="form-control" name="support">
 								</div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Add Roster</button>
+							<button type="submit" class="btn btn-success btn-lg btn-block">Add Roster</button>
 							</form>
                         </div>
                         <!-- /.panel-body -->
