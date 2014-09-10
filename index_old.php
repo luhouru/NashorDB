@@ -13,6 +13,7 @@ require_once("add_teamcomp.php");
 require_once("genchecklist.php");
 require_once("gen_team_comp.php");
 require_once("genlatestmsg.php");
+require_once("register.php");
 
 //set login status and messages to default
 $loggedin = FALSE;
@@ -24,20 +25,39 @@ $alertset = FALSE;
 //check to see if they're logging in
 //note: load nothing until login is confirmed
 if (isset($_GET['action'])) {
-	if ($_GET['action'] == "login") {
-		if (checklogin($_POST['username'],$_POST['password'])) {
-		$loggedin = TRUE;
-		$warning = "goodlogin";
-		if (isset($_POST['remember'])) {
-		$plustime = time();
-		} else {
-		$plustime = 3600;
-		}
-		setcookie("loggedin", TRUE, time()+$plustime);
-		setcookie("username", $_POST['username'], time()+$plustime);
-		} else {
-		$warning = "badlogin&username=".$_POST['username'];
-		}
+    switch($_GET['action']) {
+	    case "login":
+            if (checklogin($_POST['username'],$_POST['password'])) {
+            $loggedin = TRUE;
+            $warning = "goodlogin";
+            if (isset($_POST['remember'])) {
+            $plustime = time();
+            } else {
+            $plustime = 3600;
+            }
+            setcookie("loggedin", TRUE, time()+$plustime);
+            setcookie("username", $_POST['username'], time()+$plustime);
+            } else {
+            $warning = "badlogin&username=".$_POST['username'];
+            }
+            break;
+        case "register":
+            $pass_or_fail = register($_POST['inputName'], $_POST['inputUsername'], $_POST['inputPassword'], $_POST['inputEmail']);
+            if ($pass_or_fail == false) {
+                // account could not be created because username already exists
+                $warning = "failcreate";
+                header('Location: login.php?warning='.$warning);
+                die();
+            } else {
+                // then account was successfully created and we should post a banner.
+                $warning = "successcreate";
+                header('Location: login.php?warning='.$warning);
+                die();
+            }
+            break;
+        default:
+            header('Location: login.php');
+        break;
 	}
 }
 
@@ -80,7 +100,6 @@ if (isset($_GET['action'])) {
 		header('Location: login.php?warning=loggedout');
 		die();
 	break;
-    
     
 	case "add_teamcomp":
 	if (!isset($_POST['top'])) {
@@ -213,26 +232,20 @@ if (isset($_GET['page'])) {
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>NashorDB: A Database Management Dashboard - Chris Luk Dot Im</title>
+    <title>Bootswatch: Readable</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/bootswatch.min.css">
-      <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- SB Admin CSS - Include with every page -->
-    <link href="css/sb-admin.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="../bower_components/respond/dest/respond.min.js"></script>
     <![endif]-->
-    <script src="bootstrap.min.js"/>
     <script>
 
      var _gaq = _gaq || [];
@@ -248,22 +261,19 @@ if (isset($_GET['page'])) {
      })();
 
     </script>
+    <style>
+        ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+        ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+        ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+            color: transparent;
+        }
+      </style>  
   </head>
-    
-    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
-    
-        
-        
-        
-        
-        
-        
-    
-        
-        
-    <div class="navbar navbar-default" style="margin-top:-30px;background-color: transparent">
-      <div class="container" >
-        <div class="navbar-header" style="background:transparent; background-color:transparent;">
+  <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
+    <div class="navbar navbar-default navbar-relative-top" style="background-color:transparent;">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Bootswatch</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -272,86 +282,88 @@ if (isset($_GET['page'])) {
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li>
-              <a class="btn btn-success" data-toggle="modal" href="#about-modal">ABOUT</a>
-              <!-- Modal -->
-            </li>
-           <li class="dropdown">
-              <a style="color: #4582ec" class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="http://lolking.net">LOLKING</a></li>
-                <li><a href="http://op.gg">OP.GG</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="../default/">Default</a></li>
                 <li class="divider"></li>
-                <li><a href="http://twitter.com/emperorsyno">Twitter</a></li>
-                <li><a href="http://github.com/cluk2971">GitHub</a></li>
+                <li><a href="../cerulean/">Cerulean</a></li>
+                <li><a href="../cosmo/">Cosmo</a></li>
+                <li><a href="../cyborg/">Cyborg</a></li>
+                <li><a href="../darkly/">Darkly</a></li>
+                <li><a href="../flatly/">Flatly</a></li>
+                <li><a href="../journal/">Journal</a></li>
+                <li><a href="../lumen/">Lumen</a></li>
+                <li><a href="../paper/">Paper</a></li>
+                <li><a href="../readable/">Readable</a></li>
+                <li><a href="../sandstone/">Sandstone</a></li>
+                <li><a href="../simplex/">Simplex</a></li>
+                <li><a href="../slate/">Slate</a></li>
+                <li><a href="../spacelab/">Spacelab</a></li>
+                <li><a href="../superhero/">Superhero</a></li>
+                <li><a href="../united/">United</a></li>
+                <li><a href="../yeti/">Yeti</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="../help/">Help</a>
+            </li>
+            <li>
+              <a href="http://news.bootswatch.com">Blog</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li><a href="css/bootstrap.min.css">bootstrap.min.css</a></li>
+                <li><a href="css/bootstrap.css">bootstrap.css</a></li>
+                <li class="divider"></li>
+                <li><a href="./variables.less">variables.less</a></li>
+                <li><a href="./bootswatch.less">bootswatch.less</a></li>
               </ul>
             </li>
           </ul>
-        <div align="right">
-            <ul style="position:abolute;">
-                <div align="right">
-                    <p>Welcome, 
-                    <?php
-                        echo $_COOKIE['username'];
-                    ?>
-                    </p>
-                 </div>
-                    <form action="index.php?action=logout" method="POST" role="form">
-                        <button type="submit" class="btn btn-primary btn-sm" style="margin-left:12px;margin-top:15px;">Logout</button>
-                    </form>
-             </ul>
-        </div>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><form action="index.php?action=logout" method="POST" role="form"><button style="margin-top:12px;" class="btn btn-danger btn-md" type="submit">LOGOUT</button></form></li>
+          </ul>
 
         </div>
       </div>
     </div>
-        
-        
-        
-    <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h4 class="modal-title">About NashorDB</h4>
-                    </div>
-                    <div class="modal-body">
-                      NashorDB is a side-project attempting to aid those in climbing to higher ELO. Much like users who log their personal data post-game, NashorDB offers a user-friendly interface to record your match history details along with additional comments that may help you make less mistakes and improve general gameplay.
-                    </div>
-                    <div class="modal-footer">
-                      &copy; CHRISLUK &nbsp;&nbsp;
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->    
-        
-    <div class="container" style="margin-top:-70px;">
+
+    <div class="container">
       <div class="page-header" id="banner">
         <div class="row">
-            <br><br><br><br><br><br>
-          <div style="margin-top:100px;" class="col-lg-12">
-            <img align="left" style="position: absolute; top:-177px; height:100px; weight:100px;" src="img/nashordb_logo.png"/>
-             <img align="middle" style="position: absolute; top:-214px; right:0px;height:375px; weight:375px;" src="img/real_baron.png"/> 
-              <br>
-            <h3 align="left" style="margin-bottom:7px; margin-top: -35px; color:#c7e274;">&#8594; Record your match details</h3>
-            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; See your progress, LP gains, KDA and CS</h3>
-            <h3 align="left" class="bs-component" style="color:#c7e274; margin-top: px; margin-bottom:7px;">&#8594; Add reasons to improve and justify mistakes</h3><br>
+          <div class="col-lg-8 col-md-7 col-sm-6">
+            <h1 style="color:white;">MY DASHBOARD</h1>
+            <p style="color:white;" class="lead">For all your League of Legends needs!</p>
           </div>
-        
           <div class="col-lg-4 col-md-5 col-sm-6">
             <div class="sponsor">
-                <!--<div>
-                    
-                </div>-->
             </div>
           </div>
         </div>
       </div>
         
+        <!--MOST PLAYED CHAMPIONS MORRIS CHART-->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- /.panel -->
+                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Most Played Champions
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div style="height:325px;" id="morris-file-bar"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
         
-        
-                    <p style="color:white">
+        <p style="color:white">
                     <?php
                     	$connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
                         // find the last entries LP
@@ -369,7 +381,6 @@ if (isset($_GET['page'])) {
 			$div_result = mysqli_query($connection, $div_query);
 			$div_row = mysqli_fetch_assoc($div_result);
             if($div_row == false) {
-                echo "failed to retrieve division";
                 die();
             }
 			$current_div = $div_row['division'];
@@ -451,6 +462,9 @@ if (isset($_GET['page'])) {
                         // find the last entries LP
                         $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
                         $lp_result = mysqli_query($connection, $lp_query);
+                        if ($lp_result == false) {
+                            die();
+                        }
                         // fetch query results
 	                $lp_row = mysqli_fetch_assoc($lp_result);
                         $lp_old = $lp_row['lp'];
@@ -458,21 +472,32 @@ if (isset($_GET['page'])) {
                     ?>>
                 </div>
             </div>    
-            <div class="row">
+        
+        <!--THIS IS WHERE THE PERFORMANCE TABLE WILL BE-->
+        <div class="row">
                 <div class="col-lg-12">
                     <!-- /.panel -->
                     <?php 
 					   echo tablegen(0,0); 
 					?>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-primary">
+        </div>
+        
+        
+            <div class="row">
+                <div class="page-header">
+                    <h1 id="tables" style="color:#c7e274;">Log Entry</h1>
+                    <p style="color:white;margin-left:3em;">Use this form to log your post-game data.</p>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            <i class="fa fa-upload fa-fw"></i> Add New Entry
+                            <i class="fa fa-upload fa-fw"></i> LOG NEW ENTRY
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <form action="index.php?page=stats&action=add_entry" method="POST" role="form">
+                            <div class="col-lg-4">
 								<div class="form-group">
                                     <label>Division:</label>
                                     <select class="form-control" id="select" name="division">
@@ -506,13 +531,15 @@ if (isset($_GET['page'])) {
                                     </select>
 								</div>
                                 <div class="form-group">
-                                    <label>LP:</label>
-                                    <input class="form-control" name="lp">
+                                    <label>Current LP:</label>
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp">
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
                                     <input class="form-control" name="champion">
 								</div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>Position:</label>
                                     <select class="form-control" id="select" name="position">
@@ -523,14 +550,17 @@ if (isset($_GET['page'])) {
                                         <option>Support</option>
                                     </select>
 								</div>
+                            
 								<div class="form-group">
 									<label>KDA:</label>
-                                    <input class="form-control" name="kda">
+                                    <input placeholder="0/0/0" class="form-control" name="kda">
 								</div>
                                 <div class="form-group">
 									<label>CS:</label>
-                                    <input class="form-control" name="cs">
+                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs">
 								</div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
 									<label>Mistakes:</label>
                                     <input class="form-control" name="mistakes">
@@ -539,82 +569,30 @@ if (isset($_GET['page'])) {
 									<label>Improve By:</label>
                                     <input class="form-control" name="improvements">
                                 </div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Add Entry</button>
+                            <div class="form-group">
+							<button type="submit" align="center" style="margin-top:35px;" class="btn btn-info btn-lg btn-block">Add Entry</button></div>
+                            </div>
 							</form>
-						</div>
+
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-8 -->
             </div>
-
-
-        <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        
-        <!-------------- REVIEWS -------------->
-
-        <div class="row">
-          <div class="col-lg-12">
-            <h2 style="color:#FFF87C;" id="type-blockquotes">What People Are Saying</h2>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="bs-component">
-              <blockquote>
-                <p style="color:white;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
-                <small style="color:#FFF87C;"><cite title="Source Title">Emperor Googz</cite></small>
-              </blockquote>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="bs-component">
-              <blockquote class="pull-right">
-                <p style="color:white;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
-                <small style="color:#FFF87C;"> <cite title="Source Title">Chombol</cite></small>
-              </blockquote>
-            </div>
-          </div>
-            
-        </div>
-      </div>
-
         
         
-        
-        
-        
-        
-        
-        
-        
-        <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <br> <br> <br> <br> <br> <br> <br>
       <!-- Navbar
       ================================================== -->
       <div class="bs-docs-section clearfix">
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header">
-              <h1 style="color:white;" id="navbar">Navbar</h1>
+              <h1 id="navbar">Navbar</h1>
             </div>
+
             <div class="bs-component">
               <div class="navbar navbar-default">
                 <div class="navbar-header">
@@ -931,7 +909,33 @@ if (isset($_GET['page'])) {
           </div>
         </div>
 
-        
+        <!-- Blockquotes -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 id="type-blockquotes">Blockquotes</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="bs-component">
+              <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+              </blockquote>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="bs-component">
+              <blockquote class="pull-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Tables
       ================================================== -->
       <div class="bs-docs-section">
@@ -1729,20 +1733,17 @@ if (isset($_GET['page'])) {
 
             <ul class="list-unstyled">
               <li class="pull-right"><a href="#top">Back to top</a></li>
-              <li><a href="http://facebook.com/cel2971">Facebook</a></li>
-              <li><a href="https://twitter.com/emperorsyno">Twitter</a></li>
-              <li><a href="https://github.com/cluk2971">GitHub</a></li>
-              <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="E5ZKZUSU935DL">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-</li>
+              <li><a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;">Blog</a></li>
+              <li><a href="http://feeds.feedburner.com/bootswatch">RSS</a></li>
+              <li><a href="https://twitter.com/bootswatch">Twitter</a></li>
+              <li><a href="https://github.com/thomaspark/bootswatch/">GitHub</a></li>
+              <li><a href="../help/#api">API</a></li>
+              <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F22JEM3Q78JC2">Donate</a></li>
             </ul>
-            <p>Made by <a href="http://chrisluk.im" rel="nofollow">Chris Luk</a>. Email: <a href="mailto:luk@chrisluk.im">baron@nashordb.net</a>.</p>
+            <p>Made by <a href="http://thomaspark.me" rel="nofollow">Thomas Park</a>. Contact him at <a href="mailto:thomas@bootswatch.com">thomas@bootswatch.com</a>.</p>
             <p>Code released under the <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
             <p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
           </div>
         </div>
 
@@ -1750,10 +1751,43 @@ if (isset($_GET['page'])) {
 
 
     </div>
+
+
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"/>
-    <script src="js/bootstrap.js"/>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootswatch.js"></script>
+    <script src="js/bootswatch.js"></script>
+    
+    <!-- Page-Level Plugin Scripts - Dashboard -->
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
+      
+    <?php
+	$db = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+    $result = mysqli_query($db, "SELECT champion, count(*) FROM chrisluk GROUP BY champion ORDER BY count(*) DESC;");
+    if ($result == false) {
+        die();
+    }
+        
+	$errors = mysqli_fetch_all($result);
+	$datas = "";
+	foreach ($errors as &$val) {
+		$val[0] = basename($val[0]);
+		$datas .= "{ y: '$val[0]', a: $val[1]},";
+	}
+	?>
+	
+	<script>
+	Morris.Bar({
+		element: 'morris-file-bar',
+		data: [
+		<?php echo $datas; ?>
+			],
+		xkey: 'y',
+		ykeys: ['a'],
+		labels: ['Count']
+	});
+	</script>  
+    
   </body>
 </html>
+
