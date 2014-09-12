@@ -340,8 +340,9 @@ require_once("genlatestmsg.php");
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header">
-                    <h1 id="tables" style="color:white;">CHAMPION CHARTS</h1>
+                    <h1 id="tables" style="color:white;">MOST PLAYED CHART</h1>
             </div>
+            <img align="middle" style="position: relative;height:100%;width:100%;" src="http://i.imgur.com/6dDBSOO.png"/>
           </div>
         </div>
         
