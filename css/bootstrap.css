@@ -4618,6 +4618,10 @@ a.thumbnail.active {
   margin-bottom: 22px;
   border: 1px solid transparent;
   border-radius: 4px;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  right: 20px;
 }
 .alert h4 {
   margin-top: 0;

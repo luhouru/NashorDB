@@ -280,18 +280,11 @@ if (isset($_GET['page'])) {
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="index.php?action=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+                    <li><form action="index.php?action=logout" method="POST" role="form"><button style="margin-top:12px;" class="btn btn-danger btn-md" type="submit">LOGOUT</button></form>
+                    </li>
                 <!-- /.dropdown -->
             </ul>
-        
+            
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default navbar-static-side" role="navigation">
@@ -352,12 +345,17 @@ if (isset($_GET['page'])) {
             <!-- /.navbar-static-side -->
         </nav>
 
+        
+        
         <div id="page-wrapper">
             <div class="row">
+               
                 <div class="col-lg-12">
                     <h1 style="color:black;line-height:60px;" class="page-header"><b>NashorDB</b> <small style="color:#4582ec"><?php echo $subtitle; ?></small> <img style="vertical-align:middle;float:right;" height="60" src="img/baron_icon.png" /></h1>
                 </div>
+                    
             </div>
+
 			<?php
 
                 //alert for roster and teamcomp addition
@@ -418,7 +416,7 @@ if (isset($_GET['page'])) {
 			
         </div>
         <!-- /#page-wrapper -->
-
+        
     </div>
     <!-- /#wrapper -->
 

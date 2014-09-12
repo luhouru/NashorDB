@@ -7,22 +7,22 @@ $warningtext = "";
 if (isset($_GET['warning'])) {
 	switch($_GET['warning']) {
 		case "badlogin":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-warning\">Invalid Credentials.</div>";
+		$warningtext = "<div id=\"fade\" style=\"position:absolute;vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">Invalid Credentials.</div>";
 		break;
         case "goodlogin":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You have successfully logged in.</div>";
+		$warningtext = "<div id=\"fade\" style=\"position:absolute;vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You have successfully logged in.</div>";
 		break;
 		case "unknown":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
+		$warningtext = "<div id=\"fade\" style=\"position:absolute;vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">An error has occurred. You have been logged out.</div>";
 		break;
 		case "loggedout":
-		$warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You are logged out.</div>";
+		$warningtext = "<div id=\"fade\" style=\"position:absolute;vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-info\">You are logged out.</div>";
 		break;
-        case "createsuccess":
-        $warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You have successfully created your account. Please login using your credentials.</div>";
+        case "successcreate":
+        $warningtext = "<div id=\"fade\" style=\"position:absolute;vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-success\">You have successfully created your account. Please login using your credentials.</div>";
         break;
         case "failcreate":
-        $warningtext = "<div id=\"fade\" style=\"vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">The username you provided already exists.</div>";
+        $warningtext = "<div id=\"fade\" style=\"position:absolute;vertical-align: middle;text-align:center;margin-left:auto;margin-right:auto;width:500px;\" class=\"alert alert-danger\">The username you provided already exists.</div>";
         break;
 		default:
 		$warningtext = "";
@@ -220,7 +220,7 @@ require_once("genlatestmsg.php");
           <div style="margin-top:100px;" class="col-lg-12">
               <div style="position: relative; left: 0; top: 0;">
                   <img align="left" style="margin-left:615px;position: absolute; top:-257px; height:375px; weight:375px;overflow: hidden;" src="img/nashordb_logo2.png"/>
-                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-20px;top:-310px;height:500px; weight:500px;" src="img/fadedbaron.png"/>
+                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-20px;top:-275px;height:500px; weight:500px;" src="img/fadedbaron.png"/>
                   <button style="margin-top:-170px;margin-left:133px;width:200px;" id="showMe" class="disabled btn btn-danger">▼&nbsp;&nbsp;&nbsp;&nbsp;SHOW ME&nbsp;&nbsp;&nbsp;&nbsp;▼ </button>
               </div>
        

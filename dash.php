@@ -18,7 +18,6 @@
           
         </div>    
         <div class="row">
-                
                 <div class="col-lg-12">
                     <!-- /.panel -->
                      <div class="panel panel-danger">
