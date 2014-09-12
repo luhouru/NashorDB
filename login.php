@@ -242,6 +242,7 @@ require_once("genlatestmsg.php");
         <!--FORM TO ADD ENTRY-->
             <div class="row">
                 <div style="margin-top:75px;" class="page-header">
+                    <br>
                     <h1 id="tables" style="color:white;">USER-FRIENDLY FORMS</h1>
                 </div>
                 <div class="col-lg-12">
@@ -339,6 +340,7 @@ require_once("genlatestmsg.php");
         </div>
         <div class="row">
           <div class="col-lg-12">
+              <br><br><br><br>
             <div class="page-header">
                     <h1 id="tables" style="color:white;">MOST PLAYED CHART</h1>
             </div>
@@ -349,7 +351,7 @@ require_once("genlatestmsg.php");
         <!-------------- REVIEWS -------------->
         <div class="row">
           <div class="col-lg-12">
-              <br><br><br>
+              <br><br><br><br>
             <div style="margin-top:125px;" class="page-header">
                     <h1 id="tables" style="color:white;">REVIEWS</h1>
             </div>
@@ -358,7 +360,7 @@ require_once("genlatestmsg.php");
           <div class="col-lg-6">
             <div class="bs-component">
               <blockquote>
-                <p style="color:#4cbbfa;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
+                <p style="color:white;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
                 <small style="color:#A162E1;"><cite title="Source Title">Emperor Googz</cite></small>
               </blockquote>
             </div>
@@ -366,30 +368,22 @@ require_once("genlatestmsg.php");
           <div class="col-lg-6">
             <div class="bs-component">
               <blockquote class="pull-right">
-                <p style="color:#4cbbfa;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
+                <p style="color:white;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
                 <small style="color:#A162E1;"> <cite title="Source Title">Chombol</cite></small>
               </blockquote>
             </div>
           </div>
-        
-    
 
         
         
         
-        
-        
-        
-        
-        
-        <br><br><br><br><br><br>
-        
        
       <footer>
-          <br><br>
+          
           
         <div class="row">
           <div class="col-lg-12">
+              <br><br><br><br><br>
             <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Made by <a style="color:#A162E1;" href="http://chrisluk.im" rel="nofollow">Chris Luk</a>. Email: <a style="color:#A162E1;" href="mailto:luk@chrisluk.im">baron@nashordb.net</a>.</p>
             <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Code released under the <a style="color:#A162E1;" href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
             <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Based on <a style="color:#A162E1;" href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a style="color:#A162E1;" href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a style="color:#A162E1;" href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
