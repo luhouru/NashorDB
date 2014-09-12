@@ -121,7 +121,7 @@ require_once("genlatestmsg.php");
                 <ul>
                 <fieldset>
                     <div class="form-group">
-                    <input placeholder="Username" style="width:150px; margin-left:397px;" type="text" class="input-md form-control col-lg-4" name="username" value=""><input placeholder="Password" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-4" name="password" value="">
+                    <input placeholder="RIOT" style="width:150px; margin-left:397px;" type="text" class="input-md form-control col-lg-4" name="username" value=""><input placeholder="GAMES" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-4" name="password" value="">
                     </div>
                 </fieldset>
                 <input type="submit" name="sent" class="btn btn-primary btn-md" style="margin-right:111px;width:100px;margin-top:-64px;" value="Login"></ul></form>
@@ -171,7 +171,7 @@ require_once("genlatestmsg.php");
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <button style="color:black;" type="button" class="close" data-dismiss="modal">×</button>
                       <h4 class="modal-title">Register Form</h4>
                     </div>
                     <form class="form-horizontal" action="index.php?action=register" method="POST" role="form">
@@ -245,7 +245,7 @@ require_once("genlatestmsg.php");
                     <h1 id="tables" style="color:white;">USER-FRIENDLY FORMS</h1>
                 </div>
                 <div class="col-lg-12">
-                    <div class="panel panel-info">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
                             <i class="fa fa-upload fa-fw"></i> LOG NEW ENTRY
                         </div>
@@ -325,7 +325,7 @@ require_once("genlatestmsg.php");
                                     <input class="form-control" name="improvements" disabled>
                                 </div>
                             <div class="form-group">
-							<button type="submit" align="center" style="margin-top:35px;" class="disabled btn btn-info btn-lg btn-block">Add Entry</button></div>
+							<button type="submit" align="center" style="margin-top:35px;" class="disabled btn btn-danger btn-lg btn-block">Add Entry</button></div>
                             </div>
 							</form>
 
@@ -357,16 +357,16 @@ require_once("genlatestmsg.php");
           <div class="col-lg-6">
             <div class="bs-component">
               <blockquote>
-                <p style="color:white;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
-                <small style="color:#c7e274;"><cite title="Source Title">Emperor Googz</cite></small>
+                <p style="color:#4cbbfa;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
+                <small style="color:#A162E1;"><cite title="Source Title">Emperor Googz</cite></small>
               </blockquote>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="bs-component">
               <blockquote class="pull-right">
-                <p style="color:white;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
-                <small style="color:#c7e274;"> <cite title="Source Title">Chombol</cite></small>
+                <p style="color:#4cbbfa;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
+                <small style="color:#A162E1;"> <cite title="Source Title">Chombol</cite></small>
               </blockquote>
             </div>
           </div>
@@ -385,12 +385,13 @@ require_once("genlatestmsg.php");
         
        
       <footer>
-          <br><br><br><br><br><br><br><br><br><br><br><br>
+          <br><br>
+          
         <div class="row">
           <div class="col-lg-12">
-            <p>Made by <a style="color:#A162E1;" href="http://chrisluk.im" rel="nofollow">Chris Luk</a>. Email: <a style="color:#A162E1;" href="mailto:luk@chrisluk.im">baron@nashordb.net</a>.</p>
-            <p>Code released under the <a style="color:#A162E1;" href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
-            <p>Based on <a style="color:#A162E1;" href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a style="color:#A162E1;" href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a style="color:#A162E1;" href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+            <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Made by <a style="color:#A162E1;" href="http://chrisluk.im" rel="nofollow">Chris Luk</a>. Email: <a style="color:#A162E1;" href="mailto:luk@chrisluk.im">baron@nashordb.net</a>.</p>
+            <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Code released under the <a style="color:#A162E1;" href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
+            <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Based on <a style="color:#A162E1;" href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a style="color:#A162E1;" href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a style="color:#A162E1;" href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
           </div>
         </div>
 

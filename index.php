@@ -262,7 +262,7 @@ if (isset($_GET['page'])) {
 
 </head>
 
-<body style="background-color:#FFFFFF">
+<body style="background-size:100%;background-position:absolute;background-attachment:fixed;background-color:transparent;" background="img/white_Bg.png">
 
     <div id="wrapper">
 
@@ -314,35 +314,35 @@ if (isset($_GET['page'])) {
 							</form>
                         </li>-->
                         <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a style="color:#A162E1;" href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
+                            <a style="color:#A162E1;" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="index.php?page=stats"><i class="fa fa-table fa-fw"></i> Performance Chart</a>
+                                    <a style="color:#A162E1;" href="index.php?page=stats"><i class="fa fa-table fa-fw"></i> Performance Chart</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-group fa-fw"></i> Ranked 5's<span class="fa arrow"></span></a>
+                            <a style="color:#A162E1;" href="#"><i class="fa fa-group fa-fw"></i> Ranked 5's<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="index.php?page=bulletin"><i class="fa fa-paperclip fa-fw"></i> Bulletin</a>
+                                    <a style="color:#A162E1;" href="index.php?page=bulletin"><i class="fa fa-paperclip fa-fw"></i> Bulletin</a>
                                 </li>
                                 <li>
-                                    <a href="index.php?page=roster"><i class="fa fa-table fa-fw"></i> Roster</a>
+                                    <a style="color:#A162E1;" href="index.php?page=roster"><i class="fa fa-table fa-fw"></i> Roster</a>
                                 </li>
                                 <li>
-                                    <a href="index.php?page=comp#"><i class="fa fa-file fa-fw"></i> Team Comps</a>
+                                    <a style="color:#A162E1;" href="index.php?page=comp#"><i class="fa fa-file fa-fw"></i> Team Comps</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="index.php?page=soundcloud"><i class="fa fa-music fa-fw"></i> SoundCloud</a>
+                            <a style="color:#A162E1;" href="index.php?page=soundcloud"><i class="fa fa-music fa-fw"></i> SoundCloud</a>
                         </li>
     					<li>
-                            <a href="index.php?page=about"><i class="fa fa-user fa-fw"></i> About</a>
+                            <a style="color:#A162E1;" href="index.php?page=about"><i class="fa fa-user fa-fw"></i> About</a>
                         </li>
                     </ul>
                     <!-- /#side-menu -->
@@ -355,7 +355,7 @@ if (isset($_GET['page'])) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="color:black;line-height:60px;" class="page-header"><b>NashorDB</b> <small style="color:#4582ec"><?php echo $subtitle; ?></small> <img style="vertical-align:middle;float:right;" height="60" src="http://oi59.tinypic.com/2lkcp6x.jpg" /></h1>
+                    <h1 style="color:black;line-height:60px;" class="page-header"><b>NashorDB</b> <small style="color:#4582ec"><?php echo $subtitle; ?></small> <img style="vertical-align:middle;float:right;" height="60" src="img/baron_icon.png" /></h1>
                 </div>
             </div>
 			<?php
