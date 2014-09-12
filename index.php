@@ -56,7 +56,6 @@ if (isset($_GET['action'])) {
             }
             break;
         default:
-            header('Location: login.php');
         break;
 	}
 }
