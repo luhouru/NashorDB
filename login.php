@@ -83,7 +83,7 @@ require_once("genlatestmsg.php");
     </script>
   </head>
     
-    <body style="background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
+    <body style="zoom: 85%;background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
         
         
  <div class="container">

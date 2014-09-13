@@ -261,7 +261,7 @@ if (isset($_GET['page'])) {
 
 </head>
 
-<body style="background-size:100%;background-position:absolute;background-attachment:fixed;background-color:transparent;" background="img/white_Bg.png">
+<body style="zoom: 85%";background-size:100%;background-position:absolute;background-attachment:fixed;background-color:transparent;" background="img/white_Bg.png">
 
     <div id="wrapper">
 
@@ -306,7 +306,7 @@ if (isset($_GET['page'])) {
 							</form>
                         </li>-->
                         <li>
-                            <a style="color:#A162E1;" href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a style="color:#A162E1;" href="index.php?page=dash"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a style="color:#A162E1;" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
@@ -401,7 +401,11 @@ if (isset($_GET['page'])) {
                 case "bulletin":
 				require_once("bulletin.php");
 				break;
-
+     
+                case "dash":
+				require_once("dash.php");
+				break;
+                    
 				default:
 				require_once("dash.php");
 				break;
