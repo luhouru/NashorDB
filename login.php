@@ -108,26 +108,18 @@ require_once("genlatestmsg.php");
             <li class="dropdown">
               <button style="margin-left:12px;background-color: #FFFFFF;border: 1px solid #bebebe;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></button>
               <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="http://lolking.net">LOLKING</a></li>
+                <li><a href="http://www.lolking.net/summoner/na/24810624">LoLKing Profile</a></li>
                 <li><a href="http://op.gg">OP.GG</a></li>
                 <li class="divider"></li>
-                <li><a href="http://twitter.com/emperorsyno">Twitter</a></li>
-                <li><a href="http://github.com/cluk2971">GitHub</a></li>
+                <li><a href="http://www.lolnexus.com/">LoL Nexus</a></li>
+                <li><a href="http://www.reddit.com/r/leagueoflegends">Reddit</a></li>
               </ul>
             </li>
           </ul>
         <div align="right">
-            <form action="index.php?action=login" method="POST" role="form">
-                <ul>
-                <fieldset>
-                    <div class="form-group">
-                    <input placeholder="RIOT" style="width:150px; margin-left:397px;" type="text" class="input-md form-control col-lg-4" name="username" value=""><input placeholder="GAMES" style="margin-left:12px;width:150px;" type="password" class="input-md form-control col-lg-4" name="password" value="">
-                    </div>
-                </fieldset>
-                <input type="submit" name="sent" class="btn btn-primary btn-md" style="margin-right:111px;width:100px;margin-top:-64px;" value="Login"></ul></form>
-                <ul>
-                <button style="width:100px;margin-top:-129px;margin-left:12px;" class="btn btn-md btn-danger" style="color: #000000" data-toggle="modal" href="#register-modal">Register</button>
-                </ul>
+              <button class="btn btn-md btn-primary" style="color: #FFFFFF; margin-right:15px;" data-toggle="modal" href="#login-modal">Login</button>
+                <button class="btn btn-md btn-danger" style="color: #FFFFFF" data-toggle="modal" href="#register-modal">Register</button>
+                
         </div>
 
         </div>
@@ -167,7 +159,7 @@ require_once("genlatestmsg.php");
         
         
         <!--START OF REGISTER MODAL-->
-        <div style="margin-top:85px;margin-left:auto;margin-right:auto;" class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="margin-top:85px;" class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -175,7 +167,7 @@ require_once("genlatestmsg.php");
                       <h4 class="modal-title">Register Form</h4>
                     </div>
                     <form class="form-horizontal" action="index.php?action=register" method="POST" role="form">
-                    <div class="modal-body" style="height:250px;">
+                    <div class="modal-body" style="transform:scale(0.9);">
                             <fieldset>
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label">Name</label>
@@ -212,29 +204,63 @@ require_once("genlatestmsg.php");
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->    
         <!-- END OF REGISTER MODAL -->
+        <!--START OF REGISTER MODAL-->
+        <div style="margin-top:85px;" class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button style="color:black;" type="button" class="close" data-dismiss="modal">×</button>
+                      <h4 class="modal-title">Please Login</h4>
+                    </div>
+                    <form class="form-horizontal" action="index.php?action=login" method="POST" role="form">
+                    <div class="modal-body" style="transform:scale(0.9);">
+                            <fieldset>
+                        <div class="form-group">
+                            <label for="username" class="col-lg-2 control-label">Username</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-lg-2 control-label">Password</label>
+                            <div class="col-lg-10">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default">Login Now</button>
+                    </div>
+                    </form>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->    
+        <!-- END OF LOGIN MODAL -->
         
-    <div class="container" style="margin-top:-70px;">
+    <div class="container" >
       <div class="page-header" id="banner">
-        <div class="row">
-            <br><br><br><br><br><br><br>
+        <div style="margin-top:-50px;" class="row">
           <div style="margin-top:100px;" class="col-lg-12">
               <div style="position: relative; left: 0; top: 0;">
-                  <img align="left" style="margin-left:615px;position: absolute; top:-257px; height:375px; weight:375px;overflow: hidden;" src="img/nashordb_logo2.png"/>
-                  <img align="middle" style="position: relative;overflow: hidden; margin-left:-20px;top:-275px;height:500px; weight:500px;" src="img/fadedbaron.png"/>
-                  <button style="margin-top:-170px;margin-left:133px;width:200px;" id="showMe" class="disabled btn btn-danger">▼&nbsp;&nbsp;&nbsp;&nbsp;SHOW ME&nbsp;&nbsp;&nbsp;&nbsp;▼ </button>
+                  <div style="margin-top:-80px;" align="center">
+                      
+            <hr style="border-color:#7711FF;background-color:#7711FF;color:#7711FF;">
+                  <img style="margin-left:auto; margin-top:30px; height:130px; weight:130px;overflow: hidden;" src="img/ndb_logo.png"/><br><br>
+                  </div>
+                  <hr style="border-color:#7711FF;background-color:#7711FF;color:#7711FF;">
               </div>
        
-            
-    <div style="margin-top:-245px;" id="table" class="row">
-        <div class="page-header">
-            <h1 id="tables" style="color:white;">MATCH HISTORY LOGS</h1>
-         </div>
+                   
+    <div style="margin-top:60px;" id="table" class="row">
+            <h1 id="tables" style="color:#00FFBF;">RECORD MATCH DETAILS</h1>
          <div class="col-lg-12">
               <div class="col-lg-6">
-                  <img style="height:100%;width:100%;margin-top:0px;margin-left: -25px;margin-right: auto;" src="img/mhl_data.png"/>
+                  <img style="height:80%;width:80%;margin-top:0px;margin-left: 25px;margin-right: auto;" src="img/mhl_data.png"/>
               </div>
               <div class="col-lg-6">
-                  <img style="height:100%;width:100%;margin-top:25px;margin-left: auto;margin-right: auto;" src="img/sample_table.png"/>
+                  <img style="height:100%;width:100%;margin-top:-25px;margin-left: auto;margin-right: auto;" src="img/sample_table.png"/>
               </div>
          </div>
          
@@ -243,10 +269,10 @@ require_once("genlatestmsg.php");
             <div class="row">
                 <div style="margin-top:75px;" class="page-header">
                     <br>
-                    <h1 id="tables" style="color:white;">USER-FRIENDLY FORMS</h1>
+                    <h1 id="tables" style="color:#00FFBF;">USER-FRIENDLY FORMS</h1>
                 </div>
                 <div class="col-lg-12">
-                    <div class="panel panel-success">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <i class="fa fa-upload fa-fw"></i> LOG NEW ENTRY
                         </div>
@@ -340,9 +366,9 @@ require_once("genlatestmsg.php");
         </div>
         <div class="row">
           <div class="col-lg-12">
-              <br><br><br><br>
+              <br><br>
             <div class="page-header">
-                    <h1 id="tables" style="color:white;">MOST PLAYED CHART</h1>
+                    <h1 id="tables" style="color:#00FFBF;">MOST PLAYED CHART</h1>
             </div>
             <img align="middle" style="position: relative;height:100%;width:100%;" src="http://i.imgur.com/6dDBSOO.png"/>
           </div>
@@ -351,9 +377,9 @@ require_once("genlatestmsg.php");
         <!-------------- REVIEWS -------------->
         <div class="row">
           <div class="col-lg-12">
-              <br><br><br><br>
+              <br><br>
             <div style="margin-top:125px;" class="page-header">
-                    <h1 id="tables" style="color:white;">REVIEWS</h1>
+                    <h1 id="tables" style="color:#00FFBF;">REVIEWS</h1>
             </div>
           </div>
         </div>
@@ -361,7 +387,7 @@ require_once("genlatestmsg.php");
             <div class="bs-component">
               <blockquote>
                 <p style="color:white;">This is such an awesome way to track your progress in soloQ. I'm definitely going to keep using this and make my way to Gold!</p>
-                <small style="color:#A162E1;"><cite title="Source Title">Emperor Googz</cite></small>
+                <small style="color:#00FFBF;"><cite title="Source Title">Emperor Googz</cite></small>
               </blockquote>
             </div>
           </div>
@@ -369,7 +395,7 @@ require_once("genlatestmsg.php");
             <div class="bs-component">
               <blockquote class="pull-right">
                 <p style="color:white;">No more need for Google Docs. This dashboard is the best way to log your improvements in ranked. List your mistakes, LP gain, and KDA!</p>
-                <small style="color:#A162E1;"> <cite title="Source Title">Chombol</cite></small>
+                <small style="color:#00FFBF;"> <cite title="Source Title">Chombol</cite></small>
               </blockquote>
             </div>
           </div>
@@ -378,19 +404,15 @@ require_once("genlatestmsg.php");
         
         
        
-      <footer>
-          
+
           
         <div class="row">
-          <div class="col-lg-12">
-              <br><br><br><br><br>
-            <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Made by <a style="color:#A162E1;" href="http://chrisluk.im" rel="nofollow">Chris Luk</a>. Email: <a style="color:#A162E1;" href="mailto:luk@chrisluk.im">baron@nashordb.net</a>.</p>
-            <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Code released under the <a style="color:#A162E1;" href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
-            <p style="color:white;">&nbsp;&nbsp;&nbsp;&nbsp;Based on <a style="color:#A162E1;" href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a style="color:#A162E1;" href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a style="color:#A162E1;" href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+          <div align="center" class="col-lg-12">
+              <br><br><br>
+            <p style="color:white;">Email: <a style="color:rgb(226, 63, 63);" href="mailto:baron@nashordb.net">baron@nashordb.net</a><br><br><a style="color:#00FFBF;" href="http://chrisluk.im" rel="nofollow">&copy; CHRISLUK</a></p>
           </div>
         </div>
 
-      </footer>
 
 
     </div>

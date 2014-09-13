@@ -23,13 +23,15 @@ function add_entry($division, $lp, $champion, $position, $kda, $cs, $mistakes, $
     $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
 
     $lp_result = mysqli_query($connection, $lp_query);
-    if ($lp_result == false) {
-       die("Error in looking up LP");
+    $row_cnt = $lp_result->num_rows;
+    if ($row_cnt == 0) {
+        $lp_old = 0;
+    } else {
+        $lp_row = mysqli_fetch_assoc($lp_result);
+        $lp_old = $lp_row['lp'];
     }
 
-    // fetch query results
-    $lp_row = mysqli_fetch_assoc($lp_result);
-    $lp_old = $lp_row['lp'];
+    // calculate gain
     $gain = $lp - $lp_old;
     
     // insert the new form inputs into the database

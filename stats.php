@@ -7,16 +7,25 @@
             // find the last entries LP
 			$lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
 			$lp_result = mysqli_query($connection, $lp_query);
+            $row_cnt = $lp_result->num_rows;
+            if ($row_cnt == 0) {
+                $lp_old = 0;
+            } else {
+                $lp_row = mysqli_fetch_assoc($lp_result);
+                $lp_old = $lp_row['lp'];
+            }
             
             // fetch query results
-	        $lp_row = mysqli_fetch_assoc($lp_result);
-            $lp_old = $lp_row['lp'];
             $div_query = "SELECT `division` FROM ".$username." ORDER BY entry_id DESC limit 1";
-
 			// fetch division query results
 			$div_result = mysqli_query($connection, $div_query);
-			$div_row = mysqli_fetch_assoc($div_result);
-			$current_div = $div_row['division'];
+            $row_cnt = $div_result->num_rows;
+            if ($row_cnt == 0) {
+                $current_div = "Unknown";
+            } else {
+                $div_row = mysqli_fetch_assoc($div_result);
+			    $current_div = $div_row['division'];
+            }
 			$next_div = "";
 			switch ($current_div) {
 			    case "Bronze V":
@@ -77,13 +86,37 @@
                             case "Platinum I":
                                 $next_div = "Diamond V";
 	                        break;
+                            case "Diamond V":
+                                $next_div = "Diamond IV";
+                                break;
+ 			                case "Diamond IV":
+                                $next_div = "Diamond III";
+                                break;
+                            case "Diamond III":
+                                $next_div = "Diamond II";
+                                break;
+                            case "Diamond II":
+                                $next_div = "Diamond I";
+                                break;
+                            case "Diamond I":
+                                $next_div = "Challenger";
+                                break;
+                            case "Challenger":
+                                $next_div = "Master";
+	                            break;
+                            case "Master":
+                                $next_div = "Unknown";
+	                        break;
+                            default:
+                                $next_div = "Unknown";
+                                break;
 			}
 
                         if ($lp_old == 100) {
                             echo "In Series! Next Division: ".$next_div;
                         } else {
-			    echo "Next Division: ".$next_div;
-			}
+                            echo "Next Division: ".$next_div;
+                        }
                     ?></p>
             <div class="progress progress-striped active">
                 <div class="progress-bar"
@@ -95,9 +128,13 @@
                         // find the last entries LP
                         $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
                         $lp_result = mysqli_query($connection, $lp_query);
-                        // fetch query results
-	                $lp_row = mysqli_fetch_assoc($lp_result);
-                        $lp_old = $lp_row['lp'];
+                        $row_cnt = $lp_result->num_rows;
+                        if ($row_cnt == 0) {
+                            $lp_old = 0;
+                        } else {
+                            $lp_row = mysqli_fetch_assoc($lp_result);
+                            $lp_old = $lp_row['lp'];
+                        }
                         echo "style='width: ".$lp_old."%'";
                     ?>>
                 </div>
