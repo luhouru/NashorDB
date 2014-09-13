@@ -83,7 +83,7 @@ require_once("genlatestmsg.php");
     </script>
   </head>
     
-    <body style="zoom: 85%;background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
+    <body style="zoom: 90%;background-size:100%;background-position:absolute;background-attachment:fixed;" background="img/nashor_bg.png">
         
         
  <div class="container">
@@ -106,7 +106,7 @@ require_once("genlatestmsg.php");
               <!-- Modal -->
             </li>
             <li class="dropdown">
-              <button style="margin-left:12px;background-color: #FFFFFF;border: 1px solid #bebebe;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></button>
+              <button style="margin-left:25px;background-color: #FFFFFF;border: 1px solid #bebebe;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" id="download">LINKS <span class="caret"></span></button>
               <ul class="dropdown-menu" aria-labelledby="download">
                 <li><a href="http://www.lolking.net/summoner/na/24810624">LoLKing Profile</a></li>
                 <li><a href="http://op.gg">OP.GG</a></li>
@@ -117,8 +117,8 @@ require_once("genlatestmsg.php");
             </li>
           </ul>
         <div align="right">
-              <button class="btn btn-md btn-primary" style="color: #FFFFFF; margin-right:15px;" data-toggle="modal" href="#login-modal">Login</button>
-                <button class="btn btn-md btn-danger" style="color: #FFFFFF" data-toggle="modal" href="#register-modal">Register</button>
+              <button class="btn btn-md btn-primary" style="width:100px;color: #FFFFFF; margin-right:5px;" data-toggle="modal" href="#login-modal">Login</button>
+                <button class="btn btn-md btn-danger" style="width:100px;color: #FFFFFF" data-toggle="modal" href="#register-modal">Register</button>
                 
         </div>
 
@@ -210,7 +210,8 @@ require_once("genlatestmsg.php");
                   <div class="modal-content">
                     <div class="modal-header">
                       <button style="color:black;" type="button" class="close" data-dismiss="modal">×</button>
-                      <h4 class="modal-title">Please Login</h4>
+                      <h4 class="modal-title">Please Login</h4><br>
+                        <p>You may login with username 'RIOT' and password 'GAMES'.</p>
                     </div>
                     <form class="form-horizontal" action="index.php?action=login" method="POST" role="form">
                     <div class="modal-body" style="transform:scale(0.9);">
@@ -241,7 +242,7 @@ require_once("genlatestmsg.php");
         
     <div class="container" >
       <div class="page-header" id="banner">
-        <div style="margin-top:-50px;" class="row">
+        <div style="margin-top:-55px;" class="row">
           <div style="margin-top:100px;" class="col-lg-12">
               <div style="position: relative; left: 0; top: 0;">
                   <div style="margin-top:-80px;" align="center">
