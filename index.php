@@ -5,6 +5,7 @@ date_default_timezone_set('America/New_York');
 
 //require supporting functions
 require_once("tablegen.php");
+require_once("mostrecent.php");
 require_once("gen_roster.php");
 require_once("checklogin.php");
 require_once("add_entry.php");
@@ -306,35 +307,35 @@ if (isset($_GET['page'])) {
 							</form>
                         </li>-->
                         <li>
-                            <a style="color:#A162E1;" href="index.php?page=dash"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a style="color:#DD182A;" href="index.php?page=dash"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a style="color:#A162E1;" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
+                            <a style="color:#DD182A;" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a style="color:#A162E1;" href="index.php?page=stats"><i class="fa fa-table fa-fw"></i> Performance Chart</a>
+                                    <a style="color:#DD182A;" href="index.php?page=stats"><i class="fa fa-table fa-fw"></i> Performance Chart</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a style="color:#A162E1;" href="#"><i class="fa fa-group fa-fw"></i> Ranked 5's<span class="fa arrow"></span></a>
+                            <a style="color:#DD182A;" href="#"><i class="fa fa-group fa-fw"></i> Ranked 5's<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a style="color:#A162E1;" href="index.php?page=bulletin"><i class="fa fa-paperclip fa-fw"></i> Bulletin</a>
+                                    <a style="color:#DD182A;" href="index.php?page=bulletin"><i class="fa fa-paperclip fa-fw"></i> Bulletin</a>
                                 </li>
                                 <li>
-                                    <a style="color:#A162E1;" href="index.php?page=roster"><i class="fa fa-table fa-fw"></i> Roster</a>
+                                    <a style="color:#DD182A;" href="index.php?page=roster"><i class="fa fa-table fa-fw"></i> Roster</a>
                                 </li>
                                 <li>
-                                    <a style="color:#A162E1;" href="index.php?page=comp#"><i class="fa fa-file fa-fw"></i> Team Comps</a>
+                                    <a style="color:#DD182A;" href="index.php?page=comp#"><i class="fa fa-file fa-fw"></i> Team Comps</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a style="color:#A162E1;" href="index.php?page=soundcloud"><i class="fa fa-music fa-fw"></i> SoundCloud</a>
+                            <a style="color:#DD182A;" href="index.php?page=soundcloud"><i class="fa fa-music fa-fw"></i> SoundCloud</a>
                         </li>
     					<li>
-                            <a style="color:#A162E1;" href="index.php?page=about"><i class="fa fa-user fa-fw"></i> About</a>
+                            <a style="color:#DD182A;" href="index.php?page=about"><i class="fa fa-user fa-fw"></i> About</a>
                         </li>
                     </ul>
                     <!-- /#side-menu -->

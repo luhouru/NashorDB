@@ -32,8 +32,13 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-                
                 <div class="col-lg-12">
+                    <!-- /.panel -->
+                    <?php 
+					   echo mostrecent(0,0); 
+					?>
+                </div>
+                <!--<div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Your Most Played Champions
@@ -43,7 +48,7 @@
 				            </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-6">
                     <!-- /.panel -->
