@@ -152,7 +152,7 @@
 								</div>
                                 <div class="form-group">
                                     <label>Current LP:</label>
-                                    <input placeholder="0" type="number" name="quantity" min="0" max="100" class="form-control" name="lp">
+                                    <input placeholder="0" type="number" min="0" max="100" class="form-control" name="lp">
 								</div>
                                 <div class="form-group">
                                     <label>Champion:</label>
@@ -177,7 +177,7 @@
 								</div>
                                 <div class="form-group">
 									<label>CS:</label>
-                                    <input placeholder="0" type="number" name="quantity" min="0" max="650" class="form-control" name="cs">
+                                    <input placeholder="0" type="number" min="0" max="650" class="form-control" name="cs">
 								</div>
                             </div>
                             <div class="col-lg-4">

@@ -29,7 +29,7 @@ $db = mysqli_connect("localhost", "root", "supfoo2971", "users");
         // safe to insert
         // connect to stats table
         $db = mysqli_connect("localhost", "root", "supfoo2971", "stats");
-        $stats_result = mysqli_query($db, "CREATE TABLE ".$username." (entry_id bigint(20), division  varchar(255), lp bigint(20), gain varchar(8), champion varchar(20), position varchar(20), kda varchar(30), cd int(10), mistakes varchar(255), improve_by varchar(255), PRIMARY KEY (entry_id) );");
+        $stats_result = mysqli_query($db, "CREATE TABLE ".$username." (entry_id bigint(20), division  varchar(255), lp bigint(20), gain varchar(8), champion varchar(20), position varchar(20), kda varchar(30), cs int(10), mistakes varchar(255), improve_by varchar(255), PRIMARY KEY (entry_id) );");
         if ($stats_result == false) {
             echo "Create table failed: ".mysqli_error($db)."<br>";
             echo "Error creating performance table, please e-mail baron@nashordb.net.";
