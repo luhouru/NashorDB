@@ -35,7 +35,7 @@ function add_entry($division, $lp, $champion, $position, $kda, $cs, $mistakes, $
     $gain = $lp - $lp_old;
     
     // insert the new form inputs into the database
-    $insert_query = "INSERT INTO ".$username." SET division=`".$division."`, lp=".$lp.", gain=`".$gain."`, champion=`".$champion."`, position=`".$position."`, kda=`".$kda."`, cs=".$cs.", mistakes=`".$mistakes."`, improve_by=`".$improvements."`;";
+    $insert_query = "INSERT INTO ".$username." SET division='".$division."', lp=$lp, gain='".$gain."', champion='".$champion."', position='".$position."', kda='".$kda."', cs=$cs, mistakes='".$mistakes."', improve_by='".$improvements."';";
     $result = mysqli_query($connection, $insert_query);
     if ($result == false) {
         echo "Errormessage: ".$connection->error;
