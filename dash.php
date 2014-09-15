@@ -33,6 +33,27 @@
                     <!-- /.panel -->
                 </div>
                 <div class="col-lg-12">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar"
+                             <?php
+                                $connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
+                                /*$db_name = 'stats';
+                                mysql_select_db($db_name, $connection);*/
+                                $username = $_COOKIE['username'];
+                                // find the last entries LP
+                                $lp_query = "SELECT `lp` FROM ".$username." ORDER BY entry_id DESC limit 1";
+                                $lp_result = mysqli_query($connection, $lp_query);
+                                $row_cnt = $lp_result->num_rows;
+                                if ($row_cnt == 0) {
+                                    $lp_old = 0;
+                                } else {
+                                    $lp_row = mysqli_fetch_assoc($lp_result);
+                                    $lp_old = $lp_row['lp'];
+                                }
+                                echo "style='width: ".$lp_old."%'";
+                            ?>>
+                        </div>
+                    </div>    
                     <!-- /.panel -->
                     <?php 
 					   echo mostrecent(0,0); 
