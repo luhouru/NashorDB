@@ -1,41 +1,22 @@
+           
         <div class="row">
-            <div class="col-lg-6">
-            <div class="bs-component">
-              <div class="alert alert-dismissable alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>DASHBOARD</strong><br>Here you'll find all your important data.
-              </div>
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+            <div class="well well-sm">
+             <strong>DASHBOARD: </strong>Here you'll find all your important data.
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="bs-component">
-              <div class="alert alert-dismissable alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>STATISTICS > PERFORMANCE CHART</strong><br>In order to begin logging your data.
-              </div>
-            </div>
-          </div>
-          
-        </div>    
-        <div class="row">
-                <div class="col-lg-12">
-                    <!-- /.panel -->
-                     <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Announcements
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <p>Mandate of Heaven will become inactive soon. At least we made Bronze!</p>
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
+            <div class="col-lg-6">
+            <div class="well well-sm">
+             <strong>STATISTICS &rarr; PERFORMANCE CHART: </strong>Begin logging your data.
+            </div>
                 </div>
+             </div>
+        </div>
                 <div class="col-lg-12">
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar"
-                             <?php
+                    <div>
+                    <h3>LP:
+                        <?php
                                 $connection = mysqli_connect("localhost", "root", "supfoo2971", "stats");
                                 /*$db_name = 'stats';
                                 mysql_select_db($db_name, $connection);*/
@@ -50,14 +31,32 @@
                                     $lp_row = mysqli_fetch_assoc($lp_result);
                                     $lp_old = $lp_row['lp'];
                                 }
-                                echo "style='width: ".$lp_old."%'";
-                            ?>>
+                                echo $lp_old;
+                            ?></h3>
+                    </div>
+                     <div class="progress progress-striped active">
+                        <div class="progress-bar"
+                             <?php echo "style='width: ".$lp_old."%'"; ?> >
                         </div>
-                    </div>    
+                    </div>
                     <!-- /.panel -->
                     <?php 
-					   echo mostrecent(0,0); 
+					   echo mostrecent(0,0);
 					?>
+                    </div>
+                <div class="col-lg-12">
+                    <!-- /.panel -->
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Announcements
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p>Mandate of Heaven will become inactive soon. At least we made Bronze!</p>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
                 </div>
                 <!--<div class="col-lg-12">
                     <div class="panel panel-primary">
