@@ -246,6 +246,9 @@ if (isset($_GET['page'])) {
     <title>NashorDB: A Database Management Dashboard</title>
 
     <!-- Core CSS - Include with every page -->
+    <link rel="icon" 
+      type="image/png" 
+      href="/img/favicon.png">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -307,10 +310,10 @@ if (isset($_GET['page'])) {
 							</form>
                         </li>-->
                         <li>
-                            <a href="index.php?page=dash"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a style="color:#DD182A;" href="index.php?page=dash"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
+                            <a style="color:#DD182A;" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Statistics<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a style="color:#DD182A;" href="index.php?page=stats"><i class="fa fa-table fa-fw"></i> Performance Chart</a>
@@ -318,7 +321,7 @@ if (isset($_GET['page'])) {
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-group fa-fw"></i> Ranked 5's<span class="fa arrow"></span></a>
+                            <a style="color:#DD182A;" href="#"><i class="fa fa-group fa-fw"></i> Ranked 5's<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a style="color:#DD182A;" href="index.php?page=bulletin"><i class="fa fa-paperclip fa-fw"></i> Bulletin</a>
@@ -332,10 +335,10 @@ if (isset($_GET['page'])) {
                             </ul>
                         </li>
                         <li>
-                            <a href="index.php?page=soundcloud"><i class="fa fa-music fa-fw"></i> SoundCloud</a>
+                            <a style="color:#DD182A;" href="index.php?page=soundcloud"><i class="fa fa-music fa-fw"></i> SoundCloud</a>
                         </li>
     					<li>
-                            <a href="index.php?page=about"><i class="fa fa-user fa-fw"></i> About</a>
+                            <a style="color:#DD182A;" href="index.php?page=about"><i class="fa fa-user fa-fw"></i> About</a>
                         </li>
                     </ul>
                     <!-- /#side-menu -->
